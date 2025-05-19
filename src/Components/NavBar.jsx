@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Pages/Loading";
 import { NavLink } from "react-router";
+import { RiUserFollowFill } from "react-icons/ri";
 
 const NavBar = () => {
   const { user, logoutUser, loading } = useContext(AuthContext);
@@ -127,14 +128,14 @@ const NavBar = () => {
 
                 {/* Dropdown Menu */}
                 <div className="absolute right-0 mt-2 hidden group-hover:block z-10 bg-base-100 shadow-lg rounded-md w-52 p-4">
-                  <p className="font-medium text-sm mb-2">
-                    👤 {user?.displayName || "User"}
+                  <p className="font-medium text-sm mb-2 flex gap-2 items-center text-indigo-500">
+                    <RiUserFollowFill /> {user?.displayName || "User"}
                   </p>
                   <button
                     onClick={logoutUser}
                     className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
                   >
-                    Sign Out
+                    Log Out
                   </button>
                 </div>
               </div>
