@@ -92,32 +92,25 @@ const NavBar = () => {
             {user && (
               <li>
                 <NavLink
-                  to="/profile"
                   className={({ isActive }) =>
                     isActive
                       ? "font-semibold text-black border-b-2"
                       : "text-gray-500"
                   }
                 >
-                  My Profile
+                  Add Task
                 </NavLink>{" "}
               </li>
             )}
           </ul>
         </div>
-
+        {/* Avatar for desktop */}
         <div className="hidden lg:flex navbar-end gap-6">
           {user ? (
             <>
-             
-
-              <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-10 rounded-full object-contain bg-slate-400">
+              <div className="relative group">
+                <div className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full bg-slate-400">
                     <img
                       className="p-1 rounded-full object-contain"
                       src={
@@ -128,20 +121,22 @@ const NavBar = () => {
                     />
                   </div>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link to="/bills">Bills Page</Link>
-                  </li>
-                  <li>
-                    <Link to="/profile">My Profile</Link>{" "}
-                  </li>
-                  <li>
-                    <button onClick={logoutUser}>Sign Out</button>
-                  </li>
-                </ul>
+
+                {/* Hover Area Bridge */}
+                <div className="absolute top-full right-0 w-40 h-6 group-hover:block hidden"></div>
+
+                {/* Dropdown Menu */}
+                <div className="absolute right-0 mt-2 hidden group-hover:block z-10 bg-base-100 shadow-lg rounded-md w-52 p-4">
+                  <p className="font-medium text-sm mb-2">
+                    👤 {user?.displayName || "User"}
+                  </p>
+                  <button
+                    onClick={logoutUser}
+                    className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
+                  >
+                    Sign Out
+                  </button>
+                </div>
               </div>
             </>
           ) : (
@@ -171,6 +166,7 @@ const NavBar = () => {
             </>
           )}
         </div>
+
         <div className="flex lg:hidden navbar-end relative">
           {user ? (
             <div className="dropdown dropdown-end">
@@ -196,10 +192,7 @@ const NavBar = () => {
                 className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
               >
                 <li>
-                  <Link to="/profile">My Profile</Link>
-                </li>
-                <li>
-                  <Link to="/bills">Bills Page</Link>
+                  <Link to="/bills">Add Task</Link>
                 </li>
                 <li>
                   <button
