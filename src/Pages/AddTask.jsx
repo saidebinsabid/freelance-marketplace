@@ -1,8 +1,34 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddTask = () => {
   const { user } = useContext(AuthContext);
+  const handleAddTask = (e)=>{
+     e.preventDefault();
+     const form = e.target;
+     const formdata = new FormData(form);
+     const newTaskData = Object.fromEntries(formdata.entries());
+    //  console.log(newTaskData);
+
+     fetch("http://localhost:3000/createTask",{
+        method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newTaskData),
+     })
+     .then((res)=> res.json())
+     .then((data)=>{
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Task Added Successfully!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+     })
+  }
   return (
     <div className="w-11/12 mx-auto mb-24">
       <div className="text-center my-8">
@@ -13,7 +39,7 @@ const AddTask = () => {
           hassle-free.
         </p>
       </div>
-      <form>
+      <form onSubmit={handleAddTask}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
             <label className="label">TASK TITLE</label>
