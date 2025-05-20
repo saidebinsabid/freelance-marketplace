@@ -1,77 +1,26 @@
-import React, { createContext, useEffect, useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import app from "../Firebase/firebase.config";
-export const AuthContext = createContext();
-const auth = getAuth(app);
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const provider = new GoogleAuthProvider();
-  const createUser = (email, password) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
-  const createUserGoogle = () => {
-    return signInWithPopup(auth, provider);
-  };
-  const logoutUser = () => {
-    return signOut(auth);
-  };
-  const updateUser = (updatedData) => {
-    return updateProfile(auth.currentUser, updatedData);
-  };
-  const signInUser = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        const { displayName, email, uid, photoURL } = currentUser;
-        const extendedUser = {
-          displayName,
-          email,
-          uid,
-          photoURL,
-          credit: 10000, // default or fetched from DB
-        };
-        setUser(extendedUser);
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
-    });
+import React, { use } from 'react';
+import { AuthContext } from './AuthProvider';
+import { Navigate, useLocation } from 'react-router';
+import Loading from '../Pages/Loading';
 
-    return () => unsubscribe();
-  }, []);
-  const resetPassword = (email) => {
-    setLoading(true);
-    return sendPasswordResetEmail(auth, email);
-  };
+const PrivateRoute = ({ children }) => {
+    const { user, loading } = use(AuthContext);
+    const location = useLocation();
+    
+    // If loading, show the loading spinner
+    if (loading) {
+        return <Loading />;
+    }
 
-  const authData = {
-    user,
-    setUser,
-    createUser,
-    logoutUser,
-    signInUser,
-    loading,
-    setLoading,
-    updateUser,
-    createUserGoogle,
-    resetPassword
-  };
-  return <AuthContext value={authData}>{children}</AuthContext>;
+    // If user is logged in, show the children (protected route)
+    if (user && user?.email) {
+        return children;
+    }
+
+    // If user is not logged in, redirect to login page
+    return <Navigate 
+    to='/auth/login' 
+    state={{ from: location }} replace />;
 };
 
-export default AuthProvider;
+export default PrivateRoute;

@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../Components/NavBar';
 import { Outlet } from 'react-router';
+import Footer from '../Components/Footer';
 
 const AuthLayout = () => {
     return (
@@ -8,9 +9,12 @@ const AuthLayout = () => {
             <header>
                 <NavBar></NavBar>
             </header>
-            <main className='min-h-[calc(100vh-288px)]'>
+            <main className='min-h-[calc(100vh-430px)]'>
                 <Outlet></Outlet>
             </main>
+            <footer>
+                <Footer></Footer>
+            </footer>
         </div>
     );
 };

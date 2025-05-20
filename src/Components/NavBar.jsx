@@ -89,19 +89,47 @@ const NavBar = () => {
                 Home
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/browseTask"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-semibold text-black border-b-2"
+                    : "text-gray-500"
+                }
+              >
+                Browse Task
+              </NavLink>
+            </li>
 
             {user && (
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "font-semibold text-black border-b-2"
-                      : "text-gray-500"
-                  }
-                >
-                  Add Task
-                </NavLink>{" "}
-              </li>
+              <>
+                <li>
+                  <NavLink
+                    to="/addTask"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-semibold text-black border-b-2"
+                        : "text-gray-500"
+                    }
+                  >
+                    Add Task
+                  </NavLink>{" "}
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/myTask"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "font-semibold text-black border-b-2"
+                        : "text-gray-500"
+                    }
+                  >
+                    My Task
+                  </NavLink>{" "}
+                </li>
+              </>
             )}
           </ul>
         </div>

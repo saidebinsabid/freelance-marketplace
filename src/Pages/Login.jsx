@@ -45,7 +45,6 @@ const Login = () => {
               displayName: name,
               photoURL: photo,
               email: email,
-              credit: 10000,
             });
             setLoading(false);
             navigate(location.state?.from?.pathname || "/", { replace: true });
@@ -57,7 +56,6 @@ const Login = () => {
               displayName: name,
               photoURL: photo,
               email: email,
-              credit: 10000,
             });
             setLoading(false);
             navigate(location.state?.from?.pathname || "/", { replace: true });

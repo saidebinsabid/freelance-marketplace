@@ -51,7 +51,6 @@ const Register = () => {
               ...user,
               displayName: name,
               photoURL: photo,
-              credit: 10000,
             });
             toast.success("Successfully registered!");
             setLoading(false);
@@ -86,7 +85,6 @@ const Register = () => {
               displayName: name,
               photoURL: photo,
               email: email,
-              credit: 10000,
             });
             toast.success("Successfully registered with Google!");
             setLoading(false);
@@ -99,7 +97,6 @@ const Register = () => {
               displayName: name,
               photoURL: photo,
               email: email,
-              credit: 10000,
             });
             toast.success("Successfully registered with Google!");
             setLoading(false);
