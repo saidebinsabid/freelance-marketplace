@@ -8,6 +8,7 @@ import AddTask from "../Pages/AddTask";
 import PrivateRoute from "../Provider/PrivateRoutes";
 import BrowseTask from "../Pages/BrowseTask";
 import MyTask from "../Pages/MyTask";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/*',
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 export default router;
