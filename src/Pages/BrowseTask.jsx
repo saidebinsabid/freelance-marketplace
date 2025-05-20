@@ -7,7 +7,7 @@ const BrowseTask = () => {
   const tasks = useLoaderData();
   return (
     <div>
-      <h1 className="text-5xl font-bold pt-6 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
+      <h1 className="text-5xl font-bold pt-8 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
         <Typewriter
           words={[
             "Find Tasks That Match Your Hustle..",

@@ -4,8 +4,14 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 const Login = () => {
-  const { signInUser, setLoading, createUserGoogle, updateUser, setUser, resetPassword } =
-    use(AuthContext);
+  const {
+    signInUser,
+    setLoading,
+    createUserGoogle,
+    updateUser,
+    setUser,
+    resetPassword,
+  } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location);
@@ -19,7 +25,7 @@ const Login = () => {
     signInUser(email, password)
       .then(() => {
         toast.success("Login Successfully");
-        const redirectTo = location.state?.from?.pathname || "/";
+        const redirectTo = location.state?.from || "/";
         navigate(redirectTo, { replace: true });
       })
       .catch((error) => {
@@ -47,7 +53,7 @@ const Login = () => {
               email: email,
             });
             setLoading(false);
-            navigate(location.state?.from?.pathname || "/", { replace: true });
+            navigate(location.state?.from || "/", { replace: true });
           })
           .catch(() => {
             // console.error("Error updating Google login profile:", err);
@@ -72,13 +78,19 @@ const Login = () => {
       <div className="text-center space-y-3">
         <h2 className="text-3xl font-bold">Welcome Back!</h2>
         <p className="text-gray-600">
-            We’re glad to see you back at <span className="font-bold">KajKori.com</span>! <br />
-  Get your work done with confidence and ease – all your freelance needs in one place.
+          We’re glad to see you back at{" "}
+          <span className="font-bold">KajKori.com</span>! <br />
+          Get your work done with confidence and ease – all your freelance needs
+          in one place.
         </p>
         <button onClick={handleGoogleLogin} className="btn">
-        <FcGoogle size={20} /> Login with Google
-      </button><br />
-        <h1 className="text-gray-400">..........................<span className="text-black">OR</span>..........................</h1>
+          <FcGoogle size={20} /> Login with Google
+        </button>
+        <br />
+        <h1 className="text-gray-400">
+          ..........................<span className="text-black">OR</span>
+          ..........................
+        </h1>
       </div>
       <form onSubmit={handleLogin} className="w-full max-w-sm mx-auto px-4">
         <fieldset className="space-y-4">
@@ -107,29 +119,29 @@ const Login = () => {
             />
           </div>
           <div className="text-right">
-  <button
-    type="button"
-    onClick={() => {
-      const email = prompt("Enter your registered email:");
-      if (email) {
-        resetPassword(email)
-          .then(() => toast.success("Password reset email sent!"))
-          .catch((err) => toast.error(err.message))
-          .finally(() => setLoading(false));
-      }
-    }}
-    className="text-sm text-black hover:underline"
-  >
-    Forgot password?
-  </button>
-</div>
+            <button
+              type="button"
+              onClick={() => {
+                const email = prompt("Enter your registered email:");
+                if (email) {
+                  resetPassword(email)
+                    .then(() => toast.success("Password reset email sent!"))
+                    .catch((err) => toast.error(err.message))
+                    .finally(() => setLoading(false));
+                }
+              }}
+              className="text-sm text-black hover:underline"
+            >
+              Forgot password?
+            </button>
+          </div>
 
           {errorMessage && (
             <p className="text-red-400 text-xs">{errorMessage}</p>
           )}
           <button
             type="submit"
-             className="btn w-full py-3 bg-slate-200 border-1 border-slate-600 text-slate-700 font-semibold rounded-lg hover:bg-slate-600 hover:text-white transition"
+            className="btn w-full py-3 bg-slate-200 border-1 border-slate-600 text-slate-700 font-semibold rounded-lg hover:bg-slate-600 hover:text-white transition"
           >
             Login
           </button>
@@ -141,7 +153,6 @@ const Login = () => {
           </p>
         </fieldset>
       </form>
-
     </div>
   );
 };

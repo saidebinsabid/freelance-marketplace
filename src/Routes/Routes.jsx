@@ -10,7 +10,7 @@ import BrowseTask from "../Pages/BrowseTask";
 import MyTask from "../Pages/MyTask";
 import ErrorPage from "../Pages/ErrorPage";
 import Loading from "../Pages/Loading";
-
+import TaskDetails from "../Pages/TaskDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,9 +23,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/browseTask",
-        loader: () => fetch("http://localhost:3000/tasks"),
         hydrateFallbackElement: <Loading></Loading>,
+        loader: () => fetch("http://localhost:3000/tasks"),
         element: <BrowseTask></BrowseTask>,
+      },
+      {
+        path: "/taskDetail/:id",
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tasks/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <TaskDetails></TaskDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addTask",
@@ -60,9 +71,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/*',
-    element: <ErrorPage></ErrorPage>
-  }
+    path: "/*",
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);
 
 export default router;
