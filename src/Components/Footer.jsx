@@ -83,7 +83,7 @@ const Footer = () => {
               placeholder="Enter your Email"
               className="input input-bordered join-item"
             />
-            <button className="btn bg-[#A52A2A] join-item text-white">
+            <button className="btn bg-[#30507a] join-item text-white">
               {" "}
               <IoMdPaperPlane size={20} />
             </button>

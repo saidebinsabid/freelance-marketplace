@@ -198,12 +198,8 @@ const NavBar = () => {
 
         <div className="flex lg:hidden navbar-end relative">
           {user ? (
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+            <div className="relative group">
+              <div className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full object-contain bg-slate-400">
                   <img
                     className="p-1 rounded-full object-contain"
@@ -216,21 +212,28 @@ const NavBar = () => {
                 </div>
               </div>
 
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
-              >
-                <li>
-                  <Link to="/bills">Add Task</Link>
+              <ul className="absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 space-y-2 shadow z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                <p className="font-medium text-sm flex gap-2 items-center text-indigo-500">
+                    <RiUserFollowFill /> {user?.displayName || "User"}
+                  </p>
+                  <li className="text-center hover:bg-gray-300">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="text-center hover:bg-gray-300">
+                  <Link to="/browseTask">Browse Task</Link>
+                </li>
+                <li className="text-center hover:bg-gray-300">
+                  <Link to="/addTask">Add Task</Link>
+                </li>
+                <li className="text-center hover:bg-gray-300">
+                  <Link to="/myTask">My Task</Link>
                 </li>
                 <li>
                   <button
-                    onClick={async () => {
-                      await logoutUser();
-                      window.location.href = "/";
-                    }}
+                    onClick={logoutUser}
+                    className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
                   >
-                    Sign Out
+                    Log Out
                   </button>
                 </li>
               </ul>
@@ -258,7 +261,10 @@ const NavBar = () => {
                 className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
               >
                 <li>
-                  <Link to="/bills">Bills Page</Link>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/browseTask">Browser Task</Link>
                 </li>
                 <li>
                   <Link to="/auth/login">Login</Link>
