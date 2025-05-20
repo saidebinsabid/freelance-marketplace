@@ -221,8 +221,7 @@ const Footer = () => {
           </h1>
           <div className="flex gap-4">
             <p className="cursor-pointer hover:underline">Privacy Policy</p>
-            <p className="cursor-pointer hover:underline">Term of Use</p>
-            <p className="cursor-pointer hover:underline">Partner</p>
+            <p className="cursor-pointer hover:underline">Term & Condition</p>
           </div>
         </div>
       </div>
