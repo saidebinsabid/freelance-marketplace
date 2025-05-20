@@ -9,6 +9,7 @@ const AddTask = () => {
      const form = e.target;
      const formdata = new FormData(form);
      const newTaskData = Object.fromEntries(formdata.entries());
+     newTaskData.bidsCount = 0;
     //  console.log(newTaskData);
 
      fetch("http://localhost:3000/createTask",{
@@ -26,6 +27,7 @@ const AddTask = () => {
             icon: "success",
             draggable: true,
           });
+          form.reset();
         }
      })
   }

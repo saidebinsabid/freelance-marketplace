@@ -9,6 +9,8 @@ import PrivateRoute from "../Provider/PrivateRoutes";
 import BrowseTask from "../Pages/BrowseTask";
 import MyTask from "../Pages/MyTask";
 import ErrorPage from "../Pages/ErrorPage";
+import Loading from "../Pages/Loading";
+
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/browseTask",
+        loader: () => fetch("http://localhost:3000/tasks"),
+        hydrateFallbackElement: <Loading></Loading>,
         element: <BrowseTask></BrowseTask>,
       },
       {

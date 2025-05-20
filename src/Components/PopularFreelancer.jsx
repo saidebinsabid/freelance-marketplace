@@ -51,7 +51,7 @@ const PopularFreelancer = () => {
         </p>
       </div>
 
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 py-12">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-12">
         {freelancer.map((member, idx) => (
           <div
             key={idx}

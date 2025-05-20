@@ -8,7 +8,7 @@ const DifferentDataCount = () => {
         <h1 className="text-5xl font-bold">
           <Typewriter
             words={["Empowering Freelancers & Clients Worldwide"]}
-            loop={0}
+            loop={true}
             cursor
             cursorStyle="_"
             typeSpeed={70}
