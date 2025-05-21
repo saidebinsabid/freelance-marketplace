@@ -10,7 +10,7 @@ const AddTask = () => {
      const formdata = new FormData(form);
      const newTaskData = Object.fromEntries(formdata.entries());
      newTaskData.bidsCount = 0;
-    //  console.log(newTaskData);
+
 
      fetch("http://localhost:3000/createTask",{
         method: "POST",
