@@ -27,7 +27,7 @@ const MyTask = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete the task!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/tasks/${_id}`, {
@@ -47,6 +47,58 @@ const MyTask = () => {
           });
       }
     });
+  };
+
+  const handleBid = async (taskId) => {
+    try {
+      const res = await fetch(`http://localhost:3000/tasks/${taskId}`);
+      const task = await res.json();
+      const bidCount = task.bidsCount ?? 0;
+
+      Swal.fire({
+        title: "Bids on",
+        html: `
+    <h2 style="
+      font-size: 22px;
+      font-weight: bold;
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    ">
+      "${task.title}"
+    </h2>
+    <p style="
+      font-size: 16px;
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 6px;
+    ">
+      Current Bid Count:
+    </p>
+    <p style="
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+    ">
+      ${bidCount}
+    </p>
+  `,
+        confirmButtonText: "OK",
+        showConfirmButton: true,
+        backdrop: true,
+      });
+    } catch (error) {
+      console.error("Error fetching task:", error);
+      Swal.fire(
+        "Oops!",
+        "Something went wrong while fetching bid count.",
+        "error"
+      );
+    }
   };
 
   const categoryImages = {
@@ -124,7 +176,10 @@ const MyTask = () => {
                         Delete
                       </button>
 
-                      <button className="flex items-center gap-1 text-white text-xs px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 shadow-md transition-all">
+                      <button
+                        onClick={() => handleBid(task._id)}
+                        className="flex items-center gap-1 text-white text-xs px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 shadow-md transition-all"
+                      >
                         <GiHeartWings className="text-sm" />
                         Bid
                       </button>
