@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Pages/Loading";
 import { NavLink } from "react-router";
@@ -7,9 +7,61 @@ import { RiUserFollowFill } from "react-icons/ri";
 
 const NavBar = () => {
   const { user, logoutUser, loading } = useContext(AuthContext);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
   if (loading) {
     return <Loading></Loading>;
   }
+
+  const ToggleButton = (
+    <button
+      onClick={toggleTheme}
+      aria-label="Toggle Dark Mode"
+      className="ml-4 p-2 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+    >
+      {theme === "light" ? (
+        // Sun icon for light mode
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-yellow-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 3v1m0 16v1m8.66-12.66l-.7.7m-15.92 0l-.7-.7m16.66 8.66h-1M4 12H3m14.66 4.66l-.7-.7m-15.92 0l-.7.7M12 7a5 5 0 100 10 5 5 0 000-10z"
+          />
+        </svg>
+      ) : (
+        // Moon icon for dark mode
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-300"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          stroke="none"
+        >
+          <path d="M21 12.79A9 9 0 0112.21 3a7 7 0 000 14 9 9 0 018.79-4.21z" />
+        </svg>
+      )}
+    </button>
+  );
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -137,6 +189,7 @@ const NavBar = () => {
         <div className="hidden lg:flex navbar-end gap-6">
           {user ? (
             <>
+            {ToggleButton}
               <div className="relative group">
                 <div className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full bg-slate-400">
@@ -167,9 +220,11 @@ const NavBar = () => {
                   </button>
                 </div>
               </div>
+              
             </>
           ) : (
             <>
+            {ToggleButton}
               <Link
                 to="/auth/login"
                 className="relative inline-flex items-center justify-center px-8 py-2 text-lg font-medium tracking-tight text-white bg-slate-800 rounded-md group"
@@ -181,6 +236,8 @@ const NavBar = () => {
                   Login
                 </span>
               </Link>
+
+              
 
               <Link
                 to="/auth/register"
@@ -214,9 +271,9 @@ const NavBar = () => {
 
               <ul className="absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 space-y-2 shadow z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
                 <p className="font-medium text-sm flex gap-2 items-center text-indigo-500">
-                    <RiUserFollowFill /> {user?.displayName || "User"}
-                  </p>
-                  <li className="text-center hover:bg-gray-300">
+                  <RiUserFollowFill /> {user?.displayName || "User"}
+                </p>
+                <li className="text-center hover:bg-gray-300">
                   <Link to="/">Home</Link>
                 </li>
                 <li className="text-center hover:bg-gray-300">

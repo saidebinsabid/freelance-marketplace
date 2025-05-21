@@ -6,10 +6,13 @@ import { MdDeleteForever } from "react-icons/md";
 import { GiHeartWings } from "react-icons/gi";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import Swal from "sweetalert2";
+import UpdateTaskModal from "../Components/UpdateTaskModal";
 
 const MyTask = () => {
   const { user } = useContext(AuthContext);
   const [myTasks, setMyTasks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [updateTask, setUpdateTask] = useState(null);
   useEffect(() => {
     if (user?.email) {
       fetch(`http://localhost:3000/myTasks?email=${user.email}`)
@@ -107,6 +110,34 @@ const MyTask = () => {
     "digital marketing": "/Dj.png",
     "content writing": "/Cj.png",
   };
+
+  const handleUpdate = async (updatedData) => {
+    try {
+      const res = await fetch(`http://localhost:3000/tasks/${updateTask._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+      const data = await res.json();
+
+      if (data.modifiedCount > 0) {
+        Swal.fire("Success!", "Task updated successfully.", "success");
+        setMyTasks((prev) =>
+          prev.map((t) =>
+            t._id === updateTask._id ? { ...t, ...updatedData } : t
+          )
+        );
+      } else {
+        Swal.fire("Oops!", "Failed to update task.", "error");
+      }
+    } catch {
+      Swal.fire("Error", "Something went wrong.", "error");
+    } finally {
+      setShowModal(false);
+    }
+  };
   return (
     <div className="w-11/12 mx-auto my-24">
       {myTasks.length === 0 ? (
@@ -163,7 +194,13 @@ const MyTask = () => {
                       </div>
                     </td>
                     <td className="flex items-center justify-center gap-2">
-                      <button className="flex items-center gap-1 text-white text-xs px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-sky-600 hover:from-sky-600 hover:to-cyan-500 shadow-md transition-all">
+                      <button
+                        onClick={() => {
+                          setUpdateTask(task);
+                          setShowModal(true);
+                        }}
+                        className="flex items-center gap-1 text-white text-xs px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-sky-600 hover:from-sky-600 hover:to-cyan-500 shadow-md transition-all"
+                      >
                         <GrUpdate className="text-sm" />
                         Update
                       </button>
@@ -191,6 +228,14 @@ const MyTask = () => {
           </table>
         </div>
       )}
+      {/* Modal */}
+      <UpdateTaskModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        task={updateTask}
+        user={user}
+        onUpdate={handleUpdate}
+      />
     </div>
   );
 };
