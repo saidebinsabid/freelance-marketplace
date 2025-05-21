@@ -126,7 +126,7 @@ const NavBar = () => {
                         : "text-gray-500"
                     }
                   >
-                    My Task
+                    My Posted Task
                   </NavLink>{" "}
                 </li>
               </>
@@ -226,7 +226,7 @@ const NavBar = () => {
                   <Link to="/addTask">Add Task</Link>
                 </li>
                 <li className="text-center hover:bg-gray-300">
-                  <Link to="/myTask">My Task</Link>
+                  <Link to="/myTask">My Posted Task</Link>
                 </li>
                 <li>
                   <button
