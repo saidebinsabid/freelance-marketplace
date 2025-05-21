@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import { FaIdCardAlt, FaPuzzlePiece } from "react-icons/fa";
 import { FaEarthAmericas } from "react-icons/fa6";
@@ -6,11 +6,34 @@ import { SiLevelsdotfyi } from "react-icons/si";
 import { TbHeartSpark } from "react-icons/tb";
 
 const TaskDetails = () => {
-  const { title, taskCategory, description, deadline, budget, name } =
+  const { _id, title, taskCategory, description, deadline, budget, name, bidsCount: initialBidsCount } =
     useLoaderData();
-  console.log(title);
+    const [bidsCount, setBidsCount] = useState(initialBidsCount || 0);
+    const handleBidClick = async () => {
+    const newCount = bidsCount + 1;
+    setBidsCount(newCount);
+
+    try {
+      const res = await fetch(`http://localhost:3000/update-bid-count/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bidsCount: newCount }),
+      });
+
+      if (!res.ok) {
+        console.error("Failed to update bid count");
+      }
+    } catch (error) {
+      console.error("Error updating bid count:", error);
+    }
+  };
   return (
     <div className="w-11/12 mx-auto my-24">
+        <h2 className="text-center text-xl font-semibold my-4">
+  You bid for {bidsCount} {bidsCount === 1 ? "opportunity" : "opportunities"}.
+</h2>
       <h1 className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent drop-shadow-sm">
         {title}
       </h1>
@@ -79,9 +102,9 @@ const TaskDetails = () => {
           <div className="bg-blue-100 flex flex-col items-center p-8 rounded space-y-6">
             <h1 className="text-5xl font-semibold text-gray-800">${budget}</h1>
             <p className="text-slate-700 font-semibold">Task Type: Fixed </p>
-            <div className="flex gap-2 items-center bg-[#728ceba4] hover:bg-[#6787FE] px-12 py-3 rounded-full">
+            <div onClick={handleBidClick} className="flex gap-2 items-center bg-[#728ceba4] hover:bg-[#6787FE] px-12 py-3 rounded-full">
               <TbHeartSpark size={30} />
-              <button className="text-lg">Bid Task</button>
+              <button  className="text-lg">Bid Task</button>
             </div>
 
             <div>
