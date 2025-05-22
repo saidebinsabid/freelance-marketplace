@@ -15,7 +15,7 @@ const MyTask = () => {
   const [updateTask, setUpdateTask] = useState(null);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/myTasks?email=${user.email}`)
+      fetch(`https://freelance-marketplace-server-one.vercel.app/myTasks?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setMyTasks(data);
@@ -33,7 +33,7 @@ const MyTask = () => {
       confirmButtonText: "Yes, delete the task!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/tasks/${_id}`, {
+        fetch(`https://freelance-marketplace-server-one.vercel.app/tasks/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -54,7 +54,7 @@ const MyTask = () => {
 
   const handleBid = async (taskId) => {
     try {
-      const res = await fetch(`http://localhost:3000/tasks/${taskId}`);
+      const res = await fetch(`https://freelance-marketplace-server-one.vercel.app/tasks/${taskId}`);
       const task = await res.json();
       const bidCount = task.bidsCount ?? 0;
 
@@ -113,7 +113,7 @@ const MyTask = () => {
 
   const handleUpdate = async (updatedData) => {
     try {
-      const res = await fetch(`http://localhost:3000/tasks/${updateTask._id}`, {
+      const res = await fetch(`https://freelance-marketplace-server-one.vercel.app/tasks/${updateTask._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

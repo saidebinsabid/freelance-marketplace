@@ -12,7 +12,7 @@ const AddTask = () => {
     newTaskData.bidsCount = 0;
     newTaskData.postedDate = new Date().toISOString(); 
 
-    fetch("http://localhost:3000/createTask", {
+    fetch("https://freelance-marketplace-server-one.vercel.app/createTask", {
       method: "POST",
       headers: {
         "content-type": "application/json",
