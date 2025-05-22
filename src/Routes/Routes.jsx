@@ -26,14 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/browseTask",
         hydrateFallbackElement: <Loading></Loading>,
-        loader: () => fetch("https://freelance-marketplace-server-one.vercel.app/tasks"),
+        loader: () => fetch("https://freelance-marketplace-server-xi.vercel.app/tasks"),
         element: <BrowseTask></BrowseTask>,
       },
       {
         path: "/taskDetail/:id",
         hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
-          fetch(`https://freelance-marketplace-server-one.vercel.app/tasks/${params.id}`),
+          fetch(`https://freelance-marketplace-server-xi.vercel.app/tasks/${params.id}`),
         element: (
           <PrivateRoute>
             <TaskDetails></TaskDetails>

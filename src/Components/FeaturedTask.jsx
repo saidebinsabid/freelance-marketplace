@@ -6,12 +6,15 @@ import LatestTaskCard from "./LatestTaskCard";
 const FeaturedTask = () => {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    fetch("https://freelance-marketplace-server-one.vercel.app/tasks")
-      .then((res) => res.json())
-      .then((data) => setTasks(data))
-      .catch((err) => console.error(err));
-  }, []);
+useEffect(() => {
+  fetch("https://freelance-marketplace-server-xi.vercel.app/latest-tasks")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Fetched tasks:", data); // 👈 Add this
+      setTasks(data);
+    })
+    .catch((err) => console.error("Fetch error:", err));
+}, []);
 
   return (
     <div className="w-11/12 mx-auto my-24">

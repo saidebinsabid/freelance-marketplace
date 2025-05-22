@@ -23,7 +23,7 @@ const TaskDetails = () => {
     setBidsCount(newCount);
 
     try {
-      const res = await fetch(`https://freelance-marketplace-server-one.vercel.app/update-bid-count/${_id}`, {
+      const res = await fetch(`https://freelance-marketplace-server-xi.vercel.app/update-bid-count/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

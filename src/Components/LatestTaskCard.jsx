@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaClock, FaChartBar } from "react-icons/fa";
-import { MdVerified } from "react-icons/md";
 import { GiStarFormation } from "react-icons/gi";
 import { useNavigate } from "react-router";
 import { useDarkMode } from "../Provider/ThemeContext";
