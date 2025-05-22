@@ -150,7 +150,7 @@ const TaskDetails = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-b from-[#1e1b4b] to-[#312e81] dark:from-slate-900 dark:to-slate-800 text-white p-6 rounded-lg shadow-xl space-y-6">
+        <div className="bg-gradient-to-b from-[#1e1b4b] to-[#312e81] dark:from-slate-900 dark:to-slate-800 text-white p-6 rounded-lg shadow-xl space-y-6 h-fit">
           <div>
             <h3 className="text-xl font-bold mb-3">Task Summary</h3>
             <div className="space-y-2 text-gray-300">

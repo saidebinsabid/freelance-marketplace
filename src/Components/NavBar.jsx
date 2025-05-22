@@ -8,6 +8,8 @@ import ThemeToggle from "./ThemeToggle";
 
 const NavBar = () => {
   const { user, logoutUser, loading } = useContext(AuthContext);
+  const defaultAvatar =
+    "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg";
 
   if (loading) {
     return <Loading></Loading>;
@@ -70,7 +72,10 @@ const NavBar = () => {
             </svg>
 
             {/* Brand Name */}
-            <Link to="/" className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+            <Link
+              to="/"
+              className="text-2xl font-semibold text-gray-900 dark:text-gray-50"
+            >
               Kaj<span className="text-indigo-500">Kori</span>.com
             </Link>
           </div>
@@ -141,14 +146,11 @@ const NavBar = () => {
                 <ThemeToggle />
                 <div className="relative group">
                   <div className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full bg-slate-400">
+                    <div className="w-10 h-10 rounded-full bg-slate-400 overflow-hidden">
                       <img
                         className="p-1 rounded-full object-contain"
-                        src={
-                          user?.photoURL ||
-                          "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg"
-                        }
-                        alt="user avatar"
+                        src={user?.photoURL ? user.photoURL : defaultAvatar}
+                        alt={user?.displayName || "User Avatar"}
                       />
                     </div>
                   </div>
@@ -203,51 +205,47 @@ const NavBar = () => {
         <div className="flex lg:hidden navbar-end relative">
           {user ? (
             <div className="relative flex items-center">
-  <ThemeToggle />
+              <ThemeToggle />
 
-  <div className="relative group ml-6">
-    <div className="btn btn-ghost btn-circle avatar">
-      <div className="w-10 rounded-full object-contain bg-slate-400">
-        <img
-          className="p-1 rounded-full object-contain"
-          src={
-            user?.photoURL ||
-            "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg?ga=GA1.1.342230302.1735884929&semt=ais_hybrid&w=740"
-          }
-          alt="user avatar"
-        />
-      </div>
-    </div>
+              <div className="relative group ml-6">
+                <div className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 h-10 rounded-full bg-slate-400 overflow-hidden">
+                    <img
+                      className="p-1 rounded-full object-contain"
+                      src={user?.photoURL ? user.photoURL : defaultAvatar}
+                      alt={user?.displayName || "User Avatar"}
+                    />
+                  </div>
+                </div>
 
-    <ul className="absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 space-y-2 shadow z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
-      <p className="font-medium text-sm flex gap-2 items-center text-indigo-500">
-        <RiUserFollowFill /> {user?.displayName || "User"}
-      </p>
+                <ul className="absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 space-y-2 shadow z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                  <p className="font-medium text-sm flex gap-2 items-center text-indigo-500">
+                    <RiUserFollowFill /> {user?.displayName || "User"}
+                  </p>
 
-      <li className="text-center dark:text-black hover:bg-gray-300">
-        <Link to="/">Home</Link>
-      </li>
-      <li className="text-center dark:text-black hover:bg-gray-300">
-        <Link to="/browseTask">Browse Task</Link>
-      </li>
-      <li className="text-center dark:text-black hover:bg-gray-300">
-        <Link to="/addTask">Add Task</Link>
-      </li>
-      <li className="text-center dark:text-black hover:bg-gray-300">
-        <Link to="/myTask">My Posted Task</Link>
-      </li>
-      <li>
-        <button
-          onClick={logoutUser}
-          className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
-        >
-          Log Out
-        </button>
-      </li>
-    </ul>
-  </div>
-</div>
-
+                  <li className="text-center dark:text-black hover:bg-gray-300">
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li className="text-center dark:text-black hover:bg-gray-300">
+                    <Link to="/browseTask">Browse Task</Link>
+                  </li>
+                  <li className="text-center dark:text-black hover:bg-gray-300">
+                    <Link to="/addTask">Add Task</Link>
+                  </li>
+                  <li className="text-center dark:text-black hover:bg-gray-300">
+                    <Link to="/myTask">My Posted Task</Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={logoutUser}
+                      className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
           ) : (
             <div className="dropdown">
               <div tabIndex={0} role="button" className="btn btn-ghost">

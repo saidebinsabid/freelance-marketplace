@@ -50,7 +50,7 @@ space-y-6 md:space-y-0 md:space-x-6"
         />
       </div>
 
-      <div className="flex flex-col items-center md:items-start space-y-6 text-center md:text-left">
+      <div className="flex flex-col items-center md:items-start space-y-6 md:text-left">
         <h3 className="text-lg font-semibold">{title}</h3>
         <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-300">
           <span className="flex items-center gap-1 text-lg">
@@ -62,9 +62,10 @@ space-y-6 md:space-y-0 md:space-x-6"
         </div>
       </div>
 
-      <div className="text-center md:text-left space-y-6">
-        <p className="text-2xl font-semibold text-gray-800 dark:text-gray-300">${budget}</p>
-        <p className="text-sm text-gray-500 italic dark:text-gray-300">Fixed</p>
+      <div className="md:text-left my-auto">
+        <p className="text-2xl font-semibold text-gray-800 dark:text-gray-300">
+          ${budget}
+        </p>
       </div>
 
       <div className="my-auto">

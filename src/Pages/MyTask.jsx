@@ -141,12 +141,12 @@ const MyTask = () => {
   return (
     <div className="w-11/12 mx-auto py-24">
       {myTasks.length === 0 ? (
-        <div className="flex flex-col items-center justify-center text-center p-8 bg-white rounded-lg shadow-sm">
-          <MdOutlineAssignmentTurnedIn className="text-5xl text-gray-400 mb-4" />
-          <h2 className="text-2xl font-bold text-gray-600 mb-2">
+        <div className="flex flex-col items-center justify-center text-center p-8 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+          <MdOutlineAssignmentTurnedIn className="text-5xl text-gray-400 dark:text-gray-300 mb-4" />
+          <h2 className="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-2">
             No Tasks Added Yet
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-300">
             Start by posting a task to connect with top freelancers!
           </p>
         </div>

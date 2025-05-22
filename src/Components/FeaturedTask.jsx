@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { FaAnglesRight } from "react-icons/fa6";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import LatestTaskCard from "./LatestTaskCard";
-import ThemeToggle from "./ThemeToggle";
 const FeaturedTask = () => {
   const [tasks, setTasks] = useState([]);
 
@@ -18,7 +17,9 @@ const FeaturedTask = () => {
     <div className="w-11/12 mx-auto my-24">
       <div className="flex justify-between items-center">
         <div className="space-y-2 text-center lg:text-left">
-          <h1 className="text-3xl lg:text-5xl font-bold">Our Latest Deadline Tasks</h1>
+          <h1 className="text-3xl lg:text-5xl font-bold">
+            Our Latest Deadline Tasks
+          </h1>
           <p className="text-gray-700 dark:text-gray-300">
             Explore the latest urgent tasks and hire trusted freelancers who
             deliver fast and skilled results.
@@ -35,14 +36,11 @@ const FeaturedTask = () => {
 
       {tasks.length === 0 ? (
         <div className="flex justify-center mt-8">
-          <div className="flex flex-col items-center text-center p-8 bg-white rounded-lg shadow-sm">
-            <MdOutlineAssignmentTurnedIn className="text-5xl text-gray-400 mb-4" />
-            <h2 className="text-2xl font-bold text-gray-600 mb-2">
-              No Tasks Added Yet
+          <div className="flex flex-col items-center text-center p-8 px-36 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+            <MdOutlineAssignmentTurnedIn className="text-5xl text-gray-400 dark:text-gray-300 mb-4" />
+            <h2 className="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-2">
+              No Latest Task
             </h2>
-            <p className="text-sm text-gray-500">
-              Start by posting a task to connect with top freelancers!
-            </p>
           </div>
         </div>
       ) : (
