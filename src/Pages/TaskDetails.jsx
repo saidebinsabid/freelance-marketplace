@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
-import { FaIdCardAlt, FaPuzzlePiece } from "react-icons/fa";
-import { FaEarthAmericas } from "react-icons/fa6";
-import { SiLevelsdotfyi } from "react-icons/si";
-import { TbHeartSpark } from "react-icons/tb";
+import { FaIdCardAlt } from "react-icons/fa";
+import { GiHeartWings } from "react-icons/gi";
 
 const TaskDetails = () => {
-  const { _id, title, taskCategory, description, deadline, budget, name, bidsCount: initialBidsCount } =
-    useLoaderData();
-    const [bidsCount, setBidsCount] = useState(initialBidsCount || 0);
-    const handleBidClick = async () => {
+  const {
+    _id,
+    title,
+    taskCategory,
+    description,
+    deadline,
+    budget,
+    name,
+    bidsCount: initialBidsCount,
+    postedDate,
+  } = useLoaderData();
+
+  const [bidsCount, setBidsCount] = useState(initialBidsCount || 0);
+
+  const handleBidClick = async () => {
     const newCount = bidsCount + 1;
     setBidsCount(newCount);
 
@@ -29,116 +38,180 @@ const TaskDetails = () => {
       console.error("Error updating bid count:", error);
     }
   };
+
+
+  const categoryData = {
+    "Web Development": {
+      requirements:
+        "Experience with React, Node.js, REST APIs, and responsive design.",
+      skills: ["React", "Node.js", "JavaScript", "CSS", "API Integration"],
+    },
+    "Content Writing": {
+      requirements:
+        "Strong grammar, SEO knowledge, and content research skills.",
+      skills: ["SEO", "Research", "Copywriting", "Blogging", "Editing"],
+    },
+    "UI/UX Design": {
+      requirements:
+        "Proficient in Figma, wireframing, user research, and prototyping.",
+      skills: [
+        "Figma",
+        "Wireframes",
+        "User Research",
+        "Prototyping",
+        "Adobe XD",
+      ],
+    },
+    "Digital Marketing": {
+      requirements:
+        "Experience with social media campaigns, Google Ads, and analytics.",
+      skills: [
+        "Google Ads",
+        "Facebook Ads",
+        "SEO",
+        "Content Strategy",
+        "Analytics",
+      ],
+    },
+  };
+
+
+  const { requirements, skills } = categoryData[taskCategory] || {
+    requirements: "Relevant experience required.",
+    skills: ["Communication", "Time Management"],
+  };
+
   return (
-    <div className="w-11/12 mx-auto my-24">
-        <h2 className="text-center text-xl font-semibold my-4">
-  You bid for {bidsCount} {bidsCount === 1 ? "opportunity" : "opportunities"}.
-</h2>
-      <h1 className="text-5xl font-bold text-center bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent drop-shadow-sm">
-        {title}
-      </h1>
+    <div className="w-11/12 mx-auto py-24">
+     
+      <div className="bg-gradient-to-r from-[#1e1b4b] to-[#312e81] text-white p-6 rounded-lg shadow-xl flex items-center gap-6 justify-between">
+        <div className="flex items-center gap-4">
+          <FaIdCardAlt size={40} className="text-white" />
+          <div>
+            <h1 className="text-2xl font-bold">Posted By</h1>
+            <p className="text-lg text-gray-200">{name}</p>
+          </div>
+        </div>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold flex items-center gap-2 justify-center">
+            <GiHeartWings size={30} className="text-yellow-300 animate-pulse" />
+            {bidsCount} {bidsCount === 1 ? "Bid" : "Bids"}
+          </h2>
+          <p className="text-sm italic text-gray-300">on this task</p>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-12 lg:col-span-8 mt-4">
-          <div className="grid lg:grid-cols-3 gap-4">
-            {/* card 1 */}
-            <div className="bg-indigo-200 flex gap-4 items-center p-4 rounded">
-              <FaIdCardAlt className="my-auto" size={40} />
-
-              <div className="space-y-2">
-                <h1 className="text-xl text-[#324b5c]">Posted By</h1>
-                <p className="text-xl font-medium">{name}</p>
-              </div>
-            </div>
-
-            {/* card 2 */}
-            <div className="bg-slate-300 flex gap-4 items-center p-6 rounded">
-              <FaPuzzlePiece className="my-auto" size={40} />
-
-              <div className="space-y-2">
-                <h1 className="text-xl text-[#324b5c]">Task Category</h1>
-                <p className="text-xl font-medium">{taskCategory}</p>
-              </div>
-            </div>
-
-            {/* card 3 */}
-            <div className="bg-green-100 flex gap-4 items-center p-6 rounded">
-              <FaIdCardAlt className="my-auto" size={40} />
-
-              <div className="space-y-2">
-                <h1 className="text-xl text-[#324b5c]">Task Deadline</h1>
-                <p className="text-xl font-medium">{deadline}</p>
-              </div>
-            </div>
-
-            {/* card 4 */}
-            <div className="bg-violet-200 flex gap-4 items-center p-6 rounded">
-              <SiLevelsdotfyi className="my-auto" size={40} />
-
-              <div className="space-y-2">
-                <h1 className="text-xl text-[#324b5c]">Project Level</h1>
-                <p className="text-xl font-medium">Moderate Level</p>
-              </div>
-            </div>
-
-            {/* card 5 */}
-            <div className="bg-orange-50 flex gap-4 items-center p-6 rounded">
-              <FaEarthAmericas className="my-auto" size={40} />
-
-              <div className="space-y-2">
-                <h1 className="text-xl text-[#324b5c]">Language</h1>
-                <p className="text-xl font-medium">English</p>
-              </div>
-            </div>
+      {/* Main grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
+        {/* Left: Job Info */}
+        <div className="md:col-span-2 space-y-6">
+          <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-lg p-6 shadow">
+            <h1 className="text-3xl font-bold text-indigo-600 dark:text-indigo-300 mb-2">
+              {title}
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+              {description}
+            </p>
           </div>
 
-          <div>
-            <h1>Task Description</h1>
-            <p className="tracking-wider leading-loose">{description}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded-lg border border-gray-200 dark:border-slate-600">
+              <span className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                📂 Category
+              </span>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+                {taskCategory}
+              </h2>
+            </div>
+            <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded-lg border border-gray-200 dark:border-slate-600">
+              <span className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                💰 Budget
+              </span>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+                ${budget}
+              </h2>
+            </div>
+            <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded-lg border border-gray-200 dark:border-slate-600">
+              <span className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                ⏳ Deadline
+              </span>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+                {deadline}
+              </h2>
+            </div>
+            <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded-lg border border-gray-200 dark:border-slate-600">
+              <span className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                📝 Requirements
+              </span>
+              <h2 className="text-base text-gray-800 dark:text-white">
+                {requirements}
+              </h2>
+            </div>
           </div>
         </div>
 
-        <div className="col-span-4 mt-4">
-          <div className="bg-blue-100 flex flex-col items-center p-8 rounded space-y-6">
-            <h1 className="text-5xl font-semibold text-gray-800">${budget}</h1>
-            <p className="text-slate-700 font-semibold">Task Type: Fixed </p>
-            <div onClick={handleBidClick} className="flex gap-2 items-center bg-[#728ceba4] hover:bg-[#6787FE] px-12 py-3 rounded-full">
-              <TbHeartSpark size={30} />
-              <button  className="text-lg">Bid Task</button>
+        <div className="bg-gradient-to-b from-[#1e1b4b] to-[#312e81] dark:from-slate-900 dark:to-slate-800 text-white p-6 rounded-lg shadow-xl space-y-6">
+          <div>
+            <h3 className="text-xl font-bold mb-3">Task Summary</h3>
+            <div className="space-y-2 text-gray-300">
+              <p>
+                <span className="font-semibold text-white">Category:</span>{" "}
+                {taskCategory}
+              </p>
+              <p>
+                <span className="font-semibold text-white">Deadline:</span>{" "}
+                {deadline}
+              </p>
+              <p>
+                <span className="font-semibold text-white">Budget:</span> $
+                {budget}
+              </p>
             </div>
+          </div>
 
-            <div>
-              <table className="w-full table-fixed mt-6 bg-blue-50 rounded">
-                <thead>
-                  <tr>
-                    <th
-                      colSpan="2"
-                      className="text-center text-lg font-bold px-2 py-4 bg-gray-100"
-                    >
-                      {title}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-dashed border-gray-300">
-                    <td className="p-4">Posted By</td>
-                    <td className="p-4">{name}</td>
-                  </tr>
-                  <tr className="border-b border-dashed border-gray-300">
-                    <td className="p-4">Task Category</td>
-                    <td className="p-4">{taskCategory}</td>
-                  </tr>
-                  <tr className="border-b border-dashed border-gray-300">
-                    <td className="p-4">Project Level</td>
-                    <td className="p-4">Moderate</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4">Deadline</td>
-                    <td className="p-4">{deadline}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div className="pt-4 border-t border-white/20">
+            <h3 className="text-lg font-semibold text-white mb-1">
+              Client Reputation
+            </h3>
+            <p className="text-sm text-gray-300">★ ★ ★ ★ ☆ (22 reviews)</p>
+          </div>
+
+          <div className="pt-4 border-t border-white/20">
+            <h3 className="text-lg font-semibold text-white mb-1">Posted On</h3>
+            <p className="text-sm text-gray-300">
+              {postedDate
+                ? new Date(postedDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })
+                : "Date not available"}
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-white/20">
+            <h3 className="text-lg font-semibold text-white mb-2">
+              Skills Required
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((tag, i) => (
+                <span
+                  key={i}
+                  className="bg-white/10 px-3 py-1 text-sm rounded-full text-gray-200"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
+          </div>
+
+          <div className="pt-6">
+            <button
+              onClick={handleBidClick}
+              className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 rounded-lg transition"
+            >
+              Apply for This Task
+            </button>
           </div>
         </div>
       </div>

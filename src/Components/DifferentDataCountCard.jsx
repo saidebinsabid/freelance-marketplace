@@ -14,7 +14,10 @@ const DifferentDataCountCard = () => {
   return (
     <>
       {/* Card 1 */}
-      <div ref={ref1} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref1} 
+      className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] 
+      dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200
+      hover:shadow-xl rounded-2xl space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalJobs} alt="total-doctor-icon" />
         {inView1 && (
           <span className="text-5xl font-bold">
@@ -25,36 +28,36 @@ const DifferentDataCountCard = () => {
       </div>
 
       {/* Card 2 */}
-      <div ref={ref2} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref2} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200 hover:shadow-xl rounded-2xl space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalReview} alt="total-review-icon" />
         {inView2 && (
           <span className="text-5xl font-bold">
             <CountUp start={0} end={640} duration={2} />K
           </span>
         )}
-        <p className="pt-4 text-gray-500">Total Reviews</p>
+        <p className="pt-4 text-gray-500 dark:text-gray-300">Total Reviews</p>
       </div>
 
       {/* Card 3 */}
-      <div ref={ref3} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref3} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200 hover:shadow-xl rounded-2xl space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalCompletedTask} alt="patients-icon" />
         {inView3 && (
           <span className="text-5xl font-bold">
             <CountUp start={0} end={549} duration={2} separator="" />M
           </span>
         )}
-        <p className="pt-4 text-gray-500">Completed Tasks</p>
+        <p className="pt-4 text-gray-500 dark:text-gray-300">Completed Tasks</p>
       </div>
 
       {/* Card 4 */}
-      <div ref={ref4} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref4} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200 hover:shadow-xl rounded-2xl space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalFreelancer} alt="stuffs-icon" />
         {inView4 && (
           <span className="text-5xl font-bold">
             <CountUp start={0} end={765} duration={2} />k
           </span>
         )}
-        <p className="pt-4 text-gray-500">Freelancers Served</p>
+        <p className="pt-4 text-gray-500 dark:text-gray-300">Freelancers Served</p>
       </div>
     </>
   );

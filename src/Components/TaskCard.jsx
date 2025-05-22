@@ -27,11 +27,12 @@ const TaskCard = ({ task }) => {
   return (
     <div
       className="relative flex flex-col md:flex-row items-center md:items-start justify-between 
-bg-gradient-to-r from-[#f7f8fc] via-[#edf0f7] to-[#f7f8fc] 
+bg-gradient-to-r from-[#f7f8fc] via-[#edf0f7] to-[#f7f8fc]
+dark:from-gray-700 dark:via-gray-700 dark:to-gray-600
 rounded-xl px-5 py-8 shadow-sm hover:shadow-md transition duration-200 
 space-y-6 md:space-y-0 md:space-x-6"
     >
-      <div className="absolute -top-3 left-12 md:left-1/2 transform -translate-x-1/2">
+      <div className="hidden md:inline absolute md:-bottom-3 md:left-1/2 transform -translate-x-1/2">
         <span className="bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md">
           Open 🔓
         </span>
@@ -51,7 +52,7 @@ space-y-6 md:space-y-0 md:space-x-6"
 
       <div className="flex flex-col items-center md:items-start space-y-6 text-center md:text-left">
         <h3 className="text-lg font-semibold">{title}</h3>
-        <div className="flex items-center gap-6 text-sm text-gray-500">
+        <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-300">
           <span className="flex items-center gap-1 text-lg">
             <FaClock size={15} /> {deadline || "1-5 Days"}
           </span>
@@ -62,8 +63,8 @@ space-y-6 md:space-y-0 md:space-x-6"
       </div>
 
       <div className="text-center md:text-left space-y-6">
-        <p className="text-2xl font-semibold text-gray-800">${budget}</p>
-        <p className="text-sm text-gray-500 italic">Fixed</p>
+        <p className="text-2xl font-semibold text-gray-800 dark:text-gray-300">${budget}</p>
+        <p className="text-sm text-gray-500 italic dark:text-gray-300">Fixed</p>
       </div>
 
       <div className="my-auto">

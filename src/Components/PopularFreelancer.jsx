@@ -45,7 +45,7 @@ const PopularFreelancer = () => {
             KajBoss
           </span>
         </h1>
-        <p className="text-gray-300 text-lg md:text-xl max-w-xl mx-auto">
+        <p className="text-gray-200 text-lg md:text-xl max-w-xl mx-auto">
           Browse our top-rated freelancers, trusted for their skills,
           consistency, and excellent client feedback.
         </p>
@@ -55,7 +55,7 @@ const PopularFreelancer = () => {
         {freelancer.map((member, idx) => (
           <div
             key={idx}
-            className="bg-white shadow-md rounded-lg overflow-hidden text-center"
+            className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden text-center"
           >
             <img
               src={member.image}
@@ -63,10 +63,10 @@ const PopularFreelancer = () => {
               className="w-full h-64 object-cover"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold">{member.name}</h3>
+              <h3 className="text-lg dark:text-white font-semibold">{member.name}</h3>
 
               <div className="flex gap-1 justify-center items-center mt-2 text-yellow-500">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-gray-200">
                   <strong>Rating: </strong>
                 </span>
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -90,14 +90,18 @@ const PopularFreelancer = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-2 text-sm mb-1 mt-2 bg-white px-4 py-2 rounded-md shadow-sm">
-                <strong className="w-full text-gray-700 mb-1">
+              <div className="flex flex-wrap justify-center gap-2 text-sm mb-1 mt-2 bg-white dark:bg-gray-700 px-4 py-2 rounded-md shadow-sm">
+                <strong className="w-full text-gray-700 dark:text-gray-200 mb-1">
                   Specializations:
                 </strong>
                 {member.specialization.map((item, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 rounded-full text-gray-800 bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 text-xs font-semibold"
+                    
+                    className="px-3 py-1 rounded-full text-gray-800 
+                    bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 
+                    dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200
+                    text-xs font-semibold"
                   >
                     {item}
                   </span>

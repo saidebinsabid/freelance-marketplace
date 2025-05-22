@@ -5,7 +5,7 @@ const DifferentDataCount = () => {
   return (
     <div className="w-11/12 mx-auto py-12 font-plus">
       <div className="text-center py-6">
-        <h1 className="text-5xl font-bold">
+        <h1 className="text-2xl md:text-5xl font-bold">
           <Typewriter
             words={["Empowering Freelancers & Clients Worldwide"]}
             loop={true}
@@ -16,7 +16,7 @@ const DifferentDataCount = () => {
             delaySpeed={5000}
           />
         </h1>
-        <p className="w-3/5 mx-auto pt-6 text-gray-700">
+        <p className="lg:w-3/5 mx-auto pt-6 text-gray-700 dark:text-gray-300">
           Discover a thriving platform with thousands of jobs posted, skilled
           freelancers onboard, and projects completed with excellence. We
           connect talent with opportunity — fast and reliably.

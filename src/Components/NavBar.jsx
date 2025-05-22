@@ -1,73 +1,22 @@
 import { Link } from "react-router";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Pages/Loading";
 import { NavLink } from "react-router";
 import { RiUserFollowFill } from "react-icons/ri";
+import ThemeToggle from "./ThemeToggle";
 
 const NavBar = () => {
   const { user, logoutUser, loading } = useContext(AuthContext);
-  const [theme, setTheme] = useState("light");
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
   if (loading) {
     return <Loading></Loading>;
   }
-
-  const ToggleButton = (
-    <button
-      onClick={toggleTheme}
-      aria-label="Toggle Dark Mode"
-      className="ml-4 p-2 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
-    >
-      {theme === "light" ? (
-        // Sun icon for light mode
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-yellow-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 3v1m0 16v1m8.66-12.66l-.7.7m-15.92 0l-.7-.7m16.66 8.66h-1M4 12H3m14.66 4.66l-.7-.7m-15.92 0l-.7.7M12 7a5 5 0 100 10 5 5 0 000-10z"
-          />
-        </svg>
-      ) : (
-        // Moon icon for dark mode
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-gray-300"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-          stroke="none"
-        >
-          <path d="M21 12.79A9 9 0 0112.21 3a7 7 0 000 14 9 9 0 018.79-4.21z" />
-        </svg>
-      )}
-    </button>
-  );
-
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 dark:bg-gray-900 text-black dark:text-white shadow-sm">
       <div className="w-11/12 mx-auto flex justify-between items-center">
         <div className="navbar-start">
-          <div className="flex justify-center items-center gap-2 bg-white py-4">
+          <div className="flex justify-center items-center gap-2 bg-white dark:bg-gray-900 py-4">
             {/* Logo SVG */}
             <svg
               className="w-8 h-8"
@@ -121,12 +70,11 @@ const NavBar = () => {
             </svg>
 
             {/* Brand Name */}
-            <Link to="/" className="text-2xl font-semibold text-gray-900">
+            <Link to="/" className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
               Kaj<span className="text-indigo-500">Kori</span>.com
             </Link>
           </div>
         </div>
-
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal px-1 gap-8">
             <li>
@@ -134,8 +82,8 @@ const NavBar = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "font-semibold text-black border-b-2"
-                    : "text-gray-500"
+                    ? "font-semibold text-black dark:text-gray-50 border-b-2"
+                    : "text-gray-500 dark:text-gray-200"
                 }
               >
                 Home
@@ -146,8 +94,8 @@ const NavBar = () => {
                 to="/browseTask"
                 className={({ isActive }) =>
                   isActive
-                    ? "font-semibold text-black border-b-2"
-                    : "text-gray-500"
+                    ? "font-semibold text-black dark:text-gray-50 border-b-2"
+                    : "text-gray-500 dark:text-gray-200"
                 }
               >
                 Browse Task
@@ -161,8 +109,8 @@ const NavBar = () => {
                     to="/addTask"
                     className={({ isActive }) =>
                       isActive
-                        ? "font-semibold text-black border-b-2"
-                        : "text-gray-500"
+                        ? "font-semibold text-black dark:text-gray-50 border-b-2"
+                        : "text-gray-500 dark:text-gray-200"
                     }
                   >
                     Add Task
@@ -174,8 +122,8 @@ const NavBar = () => {
                     to="/myTask"
                     className={({ isActive }) =>
                       isActive
-                        ? "font-semibold text-black border-b-2"
-                        : "text-gray-500"
+                        ? "font-semibold text-black dark:text-gray-50 border-b-2"
+                        : "text-gray-500 dark:text-gray-200"
                     }
                   >
                     My Posted Task
@@ -189,42 +137,43 @@ const NavBar = () => {
         <div className="hidden lg:flex navbar-end gap-6">
           {user ? (
             <>
-            {ToggleButton}
-              <div className="relative group">
-                <div className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full bg-slate-400">
-                    <img
-                      className="p-1 rounded-full object-contain"
-                      src={
-                        user?.photoURL ||
-                        "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg?ga=GA1.1.342230302.1735884929&semt=ais_hybrid&w=740"
-                      }
-                      alt="user avatar"
-                    />
+              <div className="relative flex items-center gap-4">
+                <ThemeToggle />
+                <div className="relative group">
+                  <div className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full bg-slate-400">
+                      <img
+                        className="p-1 rounded-full object-contain"
+                        src={
+                          user?.photoURL ||
+                          "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg"
+                        }
+                        alt="user avatar"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Hover Area Bridge */}
+                  <div className="absolute top-full right-0 w-40 h-6 group-hover:block hidden"></div>
+
+                  {/* Dropdown Menu */}
+                  <div className="absolute right-0 mt-2 hidden group-hover:block z-10 bg-base-100 shadow-lg rounded-md w-52 p-4">
+                    <p className="font-medium text-sm mb-2 flex gap-2 items-center text-indigo-500">
+                      <RiUserFollowFill /> {user?.displayName || "User"}
+                    </p>
+                    <button
+                      onClick={logoutUser}
+                      className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
+                    >
+                      Log Out
+                    </button>
                   </div>
                 </div>
-
-                {/* Hover Area Bridge */}
-                <div className="absolute top-full right-0 w-40 h-6 group-hover:block hidden"></div>
-
-                {/* Dropdown Menu */}
-                <div className="absolute right-0 mt-2 hidden group-hover:block z-10 bg-base-100 shadow-lg rounded-md w-52 p-4">
-                  <p className="font-medium text-sm mb-2 flex gap-2 items-center text-indigo-500">
-                    <RiUserFollowFill /> {user?.displayName || "User"}
-                  </p>
-                  <button
-                    onClick={logoutUser}
-                    className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
-                  >
-                    Log Out
-                  </button>
-                </div>
               </div>
-              
             </>
           ) : (
             <>
-            {ToggleButton}
+              <ThemeToggle></ThemeToggle>
               <Link
                 to="/auth/login"
                 className="relative inline-flex items-center justify-center px-8 py-2 text-lg font-medium tracking-tight text-white bg-slate-800 rounded-md group"
@@ -236,8 +185,6 @@ const NavBar = () => {
                   Login
                 </span>
               </Link>
-
-              
 
               <Link
                 to="/auth/register"
@@ -255,46 +202,52 @@ const NavBar = () => {
 
         <div className="flex lg:hidden navbar-end relative">
           {user ? (
-            <div className="relative group">
-              <div className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full object-contain bg-slate-400">
-                  <img
-                    className="p-1 rounded-full object-contain"
-                    src={
-                      user?.photoURL ||
-                      "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg?ga=GA1.1.342230302.1735884929&semt=ais_hybrid&w=740"
-                    }
-                    alt="user avatar"
-                  />
-                </div>
-              </div>
+            <div className="relative flex items-center">
+  <ThemeToggle />
 
-              <ul className="absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 space-y-2 shadow z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
-                <p className="font-medium text-sm flex gap-2 items-center text-indigo-500">
-                  <RiUserFollowFill /> {user?.displayName || "User"}
-                </p>
-                <li className="text-center hover:bg-gray-300">
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="text-center hover:bg-gray-300">
-                  <Link to="/browseTask">Browse Task</Link>
-                </li>
-                <li className="text-center hover:bg-gray-300">
-                  <Link to="/addTask">Add Task</Link>
-                </li>
-                <li className="text-center hover:bg-gray-300">
-                  <Link to="/myTask">My Posted Task</Link>
-                </li>
-                <li>
-                  <button
-                    onClick={logoutUser}
-                    className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
-                  >
-                    Log Out
-                  </button>
-                </li>
-              </ul>
-            </div>
+  <div className="relative group ml-6">
+    <div className="btn btn-ghost btn-circle avatar">
+      <div className="w-10 rounded-full object-contain bg-slate-400">
+        <img
+          className="p-1 rounded-full object-contain"
+          src={
+            user?.photoURL ||
+            "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg?ga=GA1.1.342230302.1735884929&semt=ais_hybrid&w=740"
+          }
+          alt="user avatar"
+        />
+      </div>
+    </div>
+
+    <ul className="absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 space-y-2 shadow z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+      <p className="font-medium text-sm flex gap-2 items-center text-indigo-500">
+        <RiUserFollowFill /> {user?.displayName || "User"}
+      </p>
+
+      <li className="text-center dark:text-black hover:bg-gray-300">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="text-center dark:text-black hover:bg-gray-300">
+        <Link to="/browseTask">Browse Task</Link>
+      </li>
+      <li className="text-center dark:text-black hover:bg-gray-300">
+        <Link to="/addTask">Add Task</Link>
+      </li>
+      <li className="text-center dark:text-black hover:bg-gray-300">
+        <Link to="/myTask">My Posted Task</Link>
+      </li>
+      <li>
+        <button
+          onClick={logoutUser}
+          className="w-full bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 text-sm"
+        >
+          Log Out
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
           ) : (
             <div className="dropdown">
               <div tabIndex={0} role="button" className="btn btn-ghost">

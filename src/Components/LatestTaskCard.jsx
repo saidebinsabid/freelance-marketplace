@@ -4,10 +4,12 @@ import { FaClock, FaChartBar } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { GiStarFormation } from "react-icons/gi";
 import { useNavigate } from "react-router";
+import { useDarkMode } from "../Provider/ThemeContext";
 
 const LatestTaskCard = ({ task }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { darkMode } = useDarkMode();
 
   const { title, taskCategory, deadline = "1-5 Days", budget, _id } = task;
 
@@ -30,13 +32,16 @@ const LatestTaskCard = ({ task }) => {
   return (
     <div>
       <div
-        className="relative flex flex-col bg-gradient-to-r from-[#ffffff] via-[#edf0f7] to-[#dee3f5] 
-        rounded-xl px-5 py-8 shadow-sm hover:shadow-md transition duration-200 space-y-6"
+        className={`relative flex flex-col rounded-xl px-5 py-8 shadow-sm hover:shadow-md transition duration-200 space-y-6 ${
+          darkMode
+            ? "bg-gray-800"
+            : "bg-gradient-to-r from-[#ffffff] via-[#edf0f7] to-[#dee3f5]"
+        }`}
       >
         {/* Open Badge */}
         <div className="absolute top-8 right-5 transform -translate-x-1/2">
           <GiStarFormation
-            className="text-amber-500 absolute -bottom-2 -right-2 bg-white rounded-full text-xs"
+            className="text-amber-500 absolute -bottom-2 -right-2 bg-white dark:bg-gray-800 rounded-full text-xs"
             size={30}
           />
         </div>
@@ -51,12 +56,12 @@ const LatestTaskCard = ({ task }) => {
           <h3 className="text-lg font-semibold text-center">{title}</h3>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-around gap-4 text-sm text-gray-500">
-          <span className="flex items-center gap-1 text-lg">
+          <span className="flex items-center gap-1 text-lg dark:text-gray-300">
             <FaClock size={15} /> {deadline}
           </span>
 
-          <p className="text-gray-500 text-lg">${budget}</p>
-          <span className="flex items-center gap-1 text-lg">
+          <p className="text-gray-500 text-lg dark:text-gray-300">${budget}</p>
+          <span className="flex items-center gap-1 text-lg dark:text-gray-300">
             <FaChartBar /> Expensive
           </span>
           <button

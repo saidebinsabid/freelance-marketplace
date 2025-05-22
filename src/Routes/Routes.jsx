@@ -12,6 +12,8 @@ import ErrorPage from "../Pages/ErrorPage";
 import Loading from "../Pages/Loading";
 import TaskDetails from "../Pages/TaskDetails";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",

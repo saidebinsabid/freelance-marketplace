@@ -139,7 +139,7 @@ const MyTask = () => {
     }
   };
   return (
-    <div className="w-11/12 mx-auto my-24">
+    <div className="w-11/12 mx-auto py-24">
       {myTasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center p-8 bg-white rounded-lg shadow-sm">
           <MdOutlineAssignmentTurnedIn className="text-5xl text-gray-400 mb-4" />
@@ -152,9 +152,9 @@ const MyTask = () => {
         </div>
       ) : (
         <div className="overflow-x-auto w-full">
-          <table className="table">
+          <table className="table dark:text-gray-200 dark:bg-gray-900">
             {/* head */}
-            <thead>
+            <thead className="dark:bg-gray-800 dark:text-gray-200">
               <tr>
                 <th>No</th>
                 <th>Title</th>
@@ -171,7 +171,7 @@ const MyTask = () => {
                   "/default.png";
 
                 return (
-                  <tr key={task._id}>
+                  <tr key={task._id} className="dark:hover:bg-gray-800">
                     <td>{index + 1}</td>
                     <td>
                       <div className="flex items-center gap-3">
