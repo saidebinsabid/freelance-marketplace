@@ -90,11 +90,11 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-6 mt-2">
-            <FaPinterestP size={20} className="text-[#E60023]" />
-            <FaTwitter size={20} className="text-[#1DA1F2]" />
-            <FaFacebook size={20} className="text-[#1877F2]" />
-            <FaInstagram size={20} className="text-[#C13584]" />
-            <FaYoutube size={20} className="text-[#FF0000]" />
+            <a href="https://www.pinterest.com/"><FaPinterestP size={20} className="text-[#E60023]" /></a>
+            <a href="https://x.com/"><FaTwitter size={20} className="text-[#1DA1F2]" /></a>
+            <a href="https://www.facebook.com/saidebinsabid"><FaFacebook size={20} className="text-[#1877F2]" /></a>
+            <a href="https://www.instagram.com/"><FaInstagram size={20} className="text-[#C13584]" /></a>
+            <a href="https://www.youtube.com/@ProgrammingHeroCommunity"><FaYoutube size={20} className="text-[#FF0000]" /></a>
           </div>
         </div>
 
