@@ -248,7 +248,8 @@ const NavBar = () => {
             </div>
           ) : (
             <div className="dropdown">
-              <div tabIndex={0} role="button" className="btn btn-ghost">
+              <ThemeToggle />
+              <div tabIndex={0} role="button" className="btn btn-ghost hover:dark:bg-gray-900">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -269,16 +270,16 @@ const NavBar = () => {
                 className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
               >
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link className="dark:text-black" to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/browseTask">Browser Task</Link>
+                  <Link className="dark:text-black" to="/browseTask">Browser Task</Link>
                 </li>
                 <li>
-                  <Link to="/auth/login">Login</Link>
+                  <Link className="dark:text-black" to="/auth/login">Login</Link>
                 </li>
                 <li>
-                  <Link to="/auth/register">Register</Link>
+                  <Link className="dark:text-black" to="/auth/register">Register</Link>
                 </li>
               </ul>
             </div>
