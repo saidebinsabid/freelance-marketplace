@@ -3,20 +3,29 @@ import { useLoaderData } from "react-router";
 import TaskCard from "../Components/TaskCard";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
+import Loading from "./Loading";
 
 const BrowseTask = () => {
   const tasks = useLoaderData();
 
   const [displayTaskCart, setDisplayTaskCart] = useState([]);
   const [viewAll, setViewAll] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (viewAll) {
-      setDisplayTaskCart(tasks);
-    } else {
-      setDisplayTaskCart(tasks.slice(0, 3));
-    }
+    setLoading(true);
+    const timer = setTimeout(() => {
+      if (viewAll) {
+        setDisplayTaskCart(tasks);
+      } else {
+        setDisplayTaskCart(tasks.slice(0, 3));
+      }
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
   }, [tasks, viewAll]);
-
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <h1 className="text-3xl md:text-5xl font-bold pt-8 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">

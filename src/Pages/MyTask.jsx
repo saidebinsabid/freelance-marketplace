@@ -7,18 +7,26 @@ import { GiHeartWings } from "react-icons/gi";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import Swal from "sweetalert2";
 import UpdateTaskModal from "../Components/UpdateTaskModal";
+import Loading from "./Loading";
 
 const MyTask = () => {
   const { user } = useContext(AuthContext);
   const [myTasks, setMyTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [updateTask, setUpdateTask] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://freelance-marketplace-server-xi.vercel.app/my-tasks?email=${user.email}`)
+      fetch(
+        `https://freelance-marketplace-server-xi.vercel.app/my-tasks?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setMyTasks(data);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
         });
     }
   }, [user]);
@@ -33,9 +41,12 @@ const MyTask = () => {
       confirmButtonText: "Yes, delete the task!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://freelance-marketplace-server-xi.vercel.app/tasks/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://freelance-marketplace-server-xi.vercel.app/tasks/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -54,7 +65,9 @@ const MyTask = () => {
 
   const handleBid = async (taskId) => {
     try {
-      const res = await fetch(`https://freelance-marketplace-server-xi.vercel.app/tasks/${taskId}`);
+      const res = await fetch(
+        `https://freelance-marketplace-server-xi.vercel.app/tasks/${taskId}`
+      );
       const task = await res.json();
       const bidCount = task.bidsCount ?? 0;
 
@@ -113,13 +126,16 @@ const MyTask = () => {
 
   const handleUpdate = async (updatedData) => {
     try {
-      const res = await fetch(`https://freelance-marketplace-server-xi.vercel.app/tasks/${updateTask._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
+      const res = await fetch(
+        `https://freelance-marketplace-server-xi.vercel.app/tasks/${updateTask._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
       const data = await res.json();
 
       if (data.modifiedCount > 0) {
@@ -138,11 +154,18 @@ const MyTask = () => {
       setShowModal(false);
     }
   };
+
+  if (loading) return <Loading></Loading>;
   return (
     <div className="w-11/12 mx-auto py-24">
       <div className="text-center">
-        <h1 className="text-3xl md:text-5xl font-bold pb-2">My Created Tasks</h1>
-        <p className="md:w-3/5 mx-auto pt-6 text-gray-700 dark:text-gray-300 pb-6">Track the progress and manage details of the tasks you've posted for freelancer</p>
+        <h1 className="text-3xl md:text-5xl font-bold pb-2">
+          My Created Tasks
+        </h1>
+        <p className="md:w-3/5 mx-auto pt-6 text-gray-700 dark:text-gray-300 pb-6">
+          Track the progress and manage details of the tasks you've posted for
+          freelancer
+        </p>
       </div>
       {myTasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center p-8 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
@@ -164,7 +187,7 @@ const MyTask = () => {
                 <th>Title</th>
                 <th>Category</th>
                 <th>Budget</th>
-                <th>Deadline</th>
+                <th>Post Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -189,12 +212,21 @@ const MyTask = () => {
                         </div>
                       </div>
                     </td>
-                    <td>{task.taskCategory}</td>
+                    <td>{task.taskCategory?.charAt(0).toUpperCase() + task.taskCategory?.slice(1)}</td>
                     <td>${task.budget}</td>
                     <td>
                       <div className="flex gap-2 items-center">
                         <TiStopwatch size={20} />
-                        {task.deadline}
+                        {task.postedDate
+                          ? new Date(task.postedDate).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                              }
+                            )
+                          : "Date not available"}
                       </div>
                     </td>
                     <td className="flex items-center justify-center gap-2">

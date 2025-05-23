@@ -17,19 +17,24 @@ const TaskDetails = () => {
   } = useLoaderData();
 
   const [bidsCount, setBidsCount] = useState(initialBidsCount || 0);
+  const [hasBid, setHasBid] = useState(false);
 
   const handleBidClick = async () => {
     const newCount = bidsCount + 1;
     setBidsCount(newCount);
+    setHasBid(true);
 
     try {
-      const res = await fetch(`https://freelance-marketplace-server-xi.vercel.app/update-bid-count/${_id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ bidsCount: newCount }),
-      });
+      const res = await fetch(
+        `https://freelance-marketplace-server-xi.vercel.app/update-bid-count/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ bidsCount: newCount }),
+        }
+      );
 
       if (!res.ok) {
         console.error("Failed to update bid count");
@@ -38,7 +43,6 @@ const TaskDetails = () => {
       console.error("Error updating bid count:", error);
     }
   };
-
 
   const categoryData = {
     "Web Development": {
@@ -75,7 +79,6 @@ const TaskDetails = () => {
     },
   };
 
-
   const { requirements, skills } = categoryData[taskCategory] || {
     requirements: "Relevant experience required.",
     skills: ["Communication", "Time Management"],
@@ -83,7 +86,6 @@ const TaskDetails = () => {
 
   return (
     <div className="w-11/12 mx-auto py-24">
-     
       <div className="bg-gradient-to-r from-[#1e1b4b] to-[#312e81] text-white p-6 rounded-lg shadow-xl flex items-center gap-6 justify-between">
         <div className="flex items-center gap-4">
           <FaIdCardAlt size={40} className="text-white" />
@@ -98,6 +100,12 @@ const TaskDetails = () => {
             {bidsCount} {bidsCount === 1 ? "Bid" : "Bids"}
           </h2>
           <p className="text-sm italic text-gray-300">on this task</p>
+
+          {hasBid && (
+            <p className="text-sm mt-1 bg-yellow-400 text-black inline-block px-3 py-1 rounded-full font-medium">
+              Your bid {bidsCount} Opportunities
+            </p>
+          )}
         </div>
       </div>
 
@@ -210,7 +218,7 @@ const TaskDetails = () => {
               onClick={handleBidClick}
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 rounded-lg transition"
             >
-              Apply for This Task
+              Bid on This Task
             </button>
           </div>
         </div>

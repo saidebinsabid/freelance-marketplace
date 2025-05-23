@@ -10,7 +10,6 @@ const Login = () => {
     createUserGoogle,
     updateUser,
     setUser,
-    resetPassword,
   } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -121,15 +120,15 @@ const Login = () => {
           <div className="text-right">
             <button
               type="button"
-              onClick={() => {
-                const email = prompt("Enter your registered email:");
-                if (email) {
-                  resetPassword(email)
-                    .then(() => toast.success("Password reset email sent!"))
-                    .catch((err) => toast.error(err.message))
-                    .finally(() => setLoading(false));
-                }
-              }}
+              // onClick={() => {
+              //   const email = prompt("Enter your registered email:");
+              //   if (email) {
+              //     resetPassword(email)
+              //       .then(() => toast.success("Password reset email sent!"))
+              //       .catch((err) => toast.error(err.message))
+              //       .finally(() => setLoading(false));
+              //   }
+              // }}
               className="text-sm text-black hover:underline"
             >
               Forgot password?
