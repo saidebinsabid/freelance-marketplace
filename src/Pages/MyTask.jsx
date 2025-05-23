@@ -140,6 +140,10 @@ const MyTask = () => {
   };
   return (
     <div className="w-11/12 mx-auto py-24">
+      <div className="text-center">
+        <h1 className="text-3xl md:text-5xl font-bold pb-2">My Created Tasks</h1>
+        <p className="md:w-3/5 mx-auto pt-6 text-gray-700 dark:text-gray-300 pb-6">Track the progress and manage details of the tasks you've posted for freelancer</p>
+      </div>
       {myTasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center p-8 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
           <MdOutlineAssignmentTurnedIn className="text-5xl text-gray-400 dark:text-gray-300 mb-4" />
