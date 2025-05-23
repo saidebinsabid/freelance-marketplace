@@ -7,21 +7,24 @@ const UpdateTaskModal = ({ show, onClose, task, user, onUpdate }) => {
     budget: "",
     deadline: "",
     userName: "",
+    description: "",
     userEmail: "",
   });
 
-  useEffect(() => {
-    if (task && user) {
-      setFormData({
-        title: task.title || "",
-        taskCategory: task.taskCategory || "",
-        budget: task.budget || "",
-        deadline: task.deadline || "",
-        userName: user.displayName || "",
-        userEmail: user.email || "",
-      });
-    }
-  }, [task, user]);
+useEffect(() => {
+  if (task && user && show) {
+    setFormData({
+      title: task.title || "",
+      taskCategory: (task.taskCategory || "").toLowerCase(),
+      description: task.description || "",
+      budget: task.budget || "",
+      deadline: task.deadline || "",
+      userName: user.displayName || "",
+      userEmail: user.email || "",
+    });
+  }
+}, [task, user, show]);
+
 
   if (!show) return null;
 
@@ -45,9 +48,10 @@ const UpdateTaskModal = ({ show, onClose, task, user, onUpdate }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
+  className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative max-h-[90vh] overflow-y-auto"
+  onClick={(e) => e.stopPropagation()}
+>
+
         <h2 className="text-xl font-semibold mb-4">Update Task</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Title */}
@@ -85,6 +89,22 @@ const UpdateTaskModal = ({ show, onClose, task, user, onUpdate }) => {
               <option value="digital marketing">Digital Marketing</option>
               <option value="content writing">Content Writing</option>
             </select>
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="block mb-1 font-medium" htmlFor="description">
+              Description
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"
+              rows={4}
+            />
           </div>
 
           {/* Budget */}

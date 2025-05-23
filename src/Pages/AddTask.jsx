@@ -10,7 +10,7 @@ const AddTask = () => {
     const formdata = new FormData(form);
     const newTaskData = Object.fromEntries(formdata.entries());
     newTaskData.bidsCount = 0;
-    newTaskData.postedDate = new Date().toISOString(); 
+    newTaskData.postedDate = new Date().toISOString();
 
     fetch("https://freelance-marketplace-server-xi.vercel.app/create-task", {
       method: "POST",
