@@ -13,10 +13,12 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Footer = () => {
-    const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   return (
-    <div className="bg-gradient-to-r from-[#2c3e50] via-[#3b4c5e] to-[#4e5d6c]
-">
+    <div
+      className="bg-gradient-to-r from-[#2c3e50] via-[#3b4c5e] to-[#4e5d6c]
+"
+    >
       <div className="w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-4 py-12 gap-6 text-white">
         <div>
           <div className="flex justify-start items-center gap-2 mb-4">
@@ -90,11 +92,37 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-6 mt-2">
-            <a href="https://www.pinterest.com/"><FaPinterestP size={20} className="text-[#E60023]" /></a>
-            <a href="https://x.com/"><FaTwitter size={20} className="text-[#1DA1F2]" /></a>
-            <a href="https://www.facebook.com/saidebinsabid"><FaFacebook size={20} className="text-[#1877F2]" /></a>
-            <a href="https://www.instagram.com/"><FaInstagram size={20} className="text-[#C13584]" /></a>
-            <a href="https://www.youtube.com/@ProgrammingHeroCommunity"><FaYoutube size={20} className="text-[#FF0000]" /></a>
+            <a
+              href="https://www.pinterest.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaPinterestP size={20} className="text-[#E60023]" />
+            </a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+              <FaTwitter size={20} className="text-[#1DA1F2]" />
+            </a>
+            <a
+              href="https://www.facebook.com/saidebinsabid"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook size={20} className="text-[#1877F2]" />
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram size={20} className="text-[#C13584]" />
+            </a>
+            <a
+              href="https://www.youtube.com/@ProgrammingHeroCommunity"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube size={20} className="text-[#FF0000]" />
+            </a>
           </div>
         </div>
 
@@ -179,7 +207,10 @@ const Footer = () => {
         </div>
 
         <div>
-          <h1 className="font-bold mb-4 text-black">Kaj<span className="text-indigo-500">Kori</span>.com <span className="text-white">Gallery</span></h1>
+          <h1 className="font-bold mb-4 text-black">
+            Kaj<span className="text-indigo-500">Kori</span>.com{" "}
+            <span className="text-white">Gallery</span>
+          </h1>
           <div className="grid grid-cols-3 gap-1">
             <img
               src="/f1.png"
