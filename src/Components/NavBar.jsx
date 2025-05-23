@@ -247,41 +247,57 @@ const NavBar = () => {
               </div>
             </div>
           ) : (
-            <div className="dropdown">
+            <div className="flex items-center gap-2">
               <ThemeToggle />
-              <div tabIndex={0} role="button" className="btn btn-ghost hover:dark:bg-gray-900">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+
+              <div className="dropdown">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost hover:dark:bg-gray-900"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16"
+                    />
+                  </svg>
+                </div>
+
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
+                >
+                  <li>
+                    <Link className="dark:text-black" to="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dark:text-black" to="/browseTask">
+                      Browser Task
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dark:text-black" to="/auth/login">
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dark:text-black" to="/auth/register">
+                      Register
+                    </Link>
+                  </li>
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
-              >
-                <li>
-                  <Link className="dark:text-black" to="/">Home</Link>
-                </li>
-                <li>
-                  <Link className="dark:text-black" to="/browseTask">Browser Task</Link>
-                </li>
-                <li>
-                  <Link className="dark:text-black" to="/auth/login">Login</Link>
-                </li>
-                <li>
-                  <Link className="dark:text-black" to="/auth/register">Register</Link>
-                </li>
-              </ul>
             </div>
           )}
         </div>
