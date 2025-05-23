@@ -3,19 +3,28 @@ import { Link } from "react-router";
 import { FaAnglesRight } from "react-icons/fa6";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import LatestTaskCard from "./LatestTaskCard";
+import Loading from "../Pages/Loading";
 const FeaturedTask = () => {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  fetch("https://freelance-marketplace-server-xi.vercel.app/latest-tasks")
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Fetched tasks:", data); // 👈 Add this
-      setTasks(data);
-    })
-    .catch((err) => console.error("Fetch error:", err));
-}, []);
-
+  useEffect(() => {
+    setLoading(true);
+    fetch("https://freelance-marketplace-server-xi.vercel.app/latest-tasks")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched tasks:", data);
+        setTasks(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setLoading(false);
+      });
+  }, []);
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="w-11/12 mx-auto my-24">
       <div className="flex justify-between items-center">
