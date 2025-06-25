@@ -157,7 +157,7 @@ const MyTask = () => {
 
   if (loading) return <Loading></Loading>;
   return (
-    <div className="w-11/12 mx-auto py-24">
+    <div className="w-11/12 mx-auto pb-16 pt-32">
       <div className="text-center">
         <h1 className="text-3xl md:text-5xl font-bold pb-2">
           My Created Tasks

@@ -29,7 +29,7 @@ const LatestTaskCard = ({ task }) => {
   };
 
   return (
-    <div>
+    <div data-aos="fade-up">
       <div
         className={`relative flex flex-col rounded-xl px-5 py-8 shadow-sm hover:shadow-md transition duration-200 space-y-6 ${
           darkMode

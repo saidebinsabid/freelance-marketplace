@@ -10,6 +10,7 @@ const Login = () => {
     createUserGoogle,
     updateUser,
     setUser,
+    resetPassword
   } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -73,12 +74,12 @@ const Login = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto flex flex-col items-center space-y-3 my-16">
-      <div className="text-center space-y-3">
+    <div className="w-11/12 mx-auto flex flex-col items-center space-y-3 py-16">
+      <div className="text-center space-y-3 pt-24">
         <h2 className="text-3xl font-bold">Welcome Back!</h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           We’re glad to see you back at{" "}
-          <span className="font-bold">KajKori.com</span>! <br />
+          <span className="font-bold dark:text-white">KajKori.com</span>! <br />
           Get your work done with confidence and ease – all your freelance needs
           in one place.
         </p>
@@ -87,32 +88,32 @@ const Login = () => {
         </button>
         <br />
         <h1 className="text-gray-400">
-          ..........................<span className="text-black">OR</span>
+          ..........................<span className="text-black dark:text-white">OR</span>
           ..........................
         </h1>
       </div>
       <form onSubmit={handleLogin} className="w-full max-w-sm mx-auto px-4">
         <fieldset className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
               Email
             </label>
             <input
               name="email"
               type="email"
-              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400"
               placeholder="Email"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
               Password
             </label>
             <input
               name="password"
               type="password"
-              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400"
               placeholder="Password"
               required
             />
@@ -120,16 +121,16 @@ const Login = () => {
           <div className="text-right">
             <button
               type="button"
-              // onClick={() => {
-              //   const email = prompt("Enter your registered email:");
-              //   if (email) {
-              //     resetPassword(email)
-              //       .then(() => toast.success("Password reset email sent!"))
-              //       .catch((err) => toast.error(err.message))
-              //       .finally(() => setLoading(false));
-              //   }
-              // }}
-              className="text-sm text-black hover:underline"
+              onClick={() => {
+                const email = prompt("Enter your registered email:");
+                if (email) {
+                  resetPassword(email)
+                    .then(() => toast.success("Password reset email sent!"))
+                    .catch((err) => toast.error(err.message))
+                    .finally(() => setLoading(false));
+                }
+              }}
+              className="text-sm text-black hover:underline dark:text-indigo-300"
             >
               Forgot password?
             </button>
@@ -146,7 +147,7 @@ const Login = () => {
           </button>
           <p className="font-semibold text-center">
             Don't Have An account ?{" "}
-            <Link className="text-secondary" to="/auth/register">
+            <Link className="text-indigo-700" to="/auth/register">
               Register
             </Link>{" "}
           </p>

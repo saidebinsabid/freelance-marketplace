@@ -11,9 +11,7 @@ import MyTask from "../Pages/MyTask";
 import ErrorPage from "../Pages/ErrorPage";
 import Loading from "../Pages/Loading";
 import TaskDetails from "../Pages/TaskDetails";
-
-
-
+import DashboardLayout from "../Layouts/DashBoardLayout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,14 +24,17 @@ const router = createBrowserRouter([
       {
         path: "/browseTask",
         hydrateFallbackElement: <Loading></Loading>,
-        loader: () => fetch("https://freelance-marketplace-server-xi.vercel.app/tasks"),
+        loader: () =>
+          fetch("https://freelance-marketplace-server-xi.vercel.app/tasks"),
         element: <BrowseTask></BrowseTask>,
       },
       {
         path: "/taskDetail/:id",
         hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
-          fetch(`https://freelance-marketplace-server-xi.vercel.app/tasks/${params.id}`),
+          fetch(
+            `https://freelance-marketplace-server-xi.vercel.app/tasks/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <TaskDetails></TaskDetails>
@@ -70,6 +71,28 @@ const router = createBrowserRouter([
         path: "/auth/register",
         element: <Register></Register>,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "browseTask",
+        hydrateFallbackElement: <Loading></Loading>,
+        element: <BrowseTask />,
+        loader: () =>
+          fetch("https://freelance-marketplace-server-xi.vercel.app/tasks"),
+      },
+      {
+        path: "addTask",
+        element: <AddTask />,
+      },
+      { path: "myTask", element: <MyTask /> },
     ],
   },
   {

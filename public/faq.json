@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "question": "How can I post a task on KajKori.com?",
+    "answer": "To post a task, simply log in and go to the 'Add Task' page. Fill in the required details such as task title, category, deadline, and budget. Once submitted, your task will be listed for freelancers to view and bid on."
+  },
+  {
+    "id": 2,
+    "question": "Do I need an account to browse tasks or bid?",
+    "answer": "You can browse all listed tasks without logging in, but to add tasks, bid on them, or view detailed task information, you'll need to create an account and log in."
+  },
+  {
+    "id": 3,
+    "question": "What happens after I bid on a task?",
+    "answer": "When you bid on a task, the task poster can see your bid count and details. A bid counter increases on the task detail page to track how many freelancers have shown interest."
+  },
+  {
+    "id": 4,
+    "question": "Is KajKori.com mobile friendly?",
+    "answer": "Yes, KajKori.com is fully responsive. The platform works smoothly on mobile, tablet, and desktop devices for seamless access anywhere."
+  },
+  {
+    "id": 5,
+    "question": "Can I update or delete my posted tasks later?",
+    "answer": "Yes. Go to the 'My Posted Tasks' page after logging in. There you can update any task information or delete tasks you no longer want listed."
+  }
+]

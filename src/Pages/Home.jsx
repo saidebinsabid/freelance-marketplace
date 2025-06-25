@@ -3,7 +3,7 @@ import Hero from '../Components/Hero';
 import DifferentDataCount from '../Components/DifferentDataCount';
 import PopularFreelancer from '../Components/PopularFreelancer';
 import FeaturedTask from '../Components/FeaturedTask';
-import { ThemeProvider } from '../Provider/ThemeContext';
+import { Faq } from '../Components/Faq';
 
 
 
@@ -15,7 +15,7 @@ const Home = () => {
             <FeaturedTask />
             <PopularFreelancer />
             <DifferentDataCount />
-
+            <Faq></Faq>
         </div>
     );
 };

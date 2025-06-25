@@ -1,84 +1,53 @@
-import { Link } from "react-router";
-import { useContext } from "react";
+import { Link, useLocation } from "react-router";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Pages/Loading";
 import { NavLink } from "react-router";
 import { RiUserFollowFill } from "react-icons/ri";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 const NavBar = () => {
   const { user, logoutUser, loading } = useContext(AuthContext);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   const defaultAvatar =
     "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg";
+  useEffect(() => {
+    const handleScroll = () => {
+      // If page scrolled more than 50px vertically, set scrolled to true
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (loading) {
     return <Loading></Loading>;
   }
   return (
-    <div className="navbar dark:bg-slate-900 text-white shadow-sm">
+    <div
+      className={`navbar fixed top-0 left-0 right-0 z-50 text-white transition-colors shadow-sm duration-300 ${
+        isHomePage
+          ? scrolled
+            ? "bg-gradient-to-r from-[#1e1b4b] to-[#312e81] dark:from-slate-900 dark:to-slate-800"
+            : "bg-transparent dark:bg-transparent"
+          : "bg-gradient-to-r from-[#1e1b4b] to-[#312e81] dark:from-slate-900 dark:to-slate-800"
+      }`}
+    >
       <div className="w-11/12 mx-auto flex justify-between items-center">
         <div className="navbar-start">
-          <div className="flex justify-center items-center gap-2 py-4">
-            {/* Logo SVG */}
-            <svg
-              className="w-8 h-8"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              fill="none"
-            >
-              <defs>
-                <linearGradient
-                  id="aesthetic-gradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#6366F1" /> {/* Indigo */}
-                  <stop offset="100%" stopColor="#06B6D4" /> {/* Cyan */}
-                </linearGradient>
-              </defs>
-              <rect
-                x="3"
-                y="1"
-                width="7"
-                height="12"
-                stroke="url(#aesthetic-gradient)"
-              />
-              <rect
-                x="3"
-                y="17"
-                width="7"
-                height="6"
-                stroke="url(#aesthetic-gradient)"
-              />
-              <rect
-                x="14"
-                y="1"
-                width="7"
-                height="6"
-                stroke="url(#aesthetic-gradient)"
-              />
-              <rect
-                x="14"
-                y="11"
-                width="7"
-                height="12"
-                stroke="url(#aesthetic-gradient)"
-              />
-            </svg>
-
-            {/* Brand Name */}
-            <Link
-              to="/"
-              className="text-2xl font-semibold text-black"
-            >
-              Kaj<span className="text-indigo-500">Kori</span>.com
-            </Link>
-          </div>
+          <Logo></Logo>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal px-1 gap-8">
@@ -87,8 +56,8 @@ const NavBar = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "font-semibold text-slate-700 dark:text-gray-50 border-b-2"
-                    : "text-slate-700 dark:text-gray-200"
+                    ? "font-semibold text-indigo-300 dark:text-indigo-700 border-b-2"
+                    : "text-white dark:text-gray-200"
                 }
               >
                 Home
@@ -99,39 +68,47 @@ const NavBar = () => {
                 to="/browseTask"
                 className={({ isActive }) =>
                   isActive
-                    ? "font-semibold text-slate-700 dark:text-gray-50 border-b-2"
-                    : "text-slate-700 dark:text-gray-200"
+                    ? "font-semibold text-indigo-300 dark:text-indigo-700 border-b-2"
+                    : "text-white dark:text-gray-200"
                 }
               >
                 Browse Task
               </NavLink>
             </li>
 
+            <li>
+              <Link
+                to={user ? "/addTask" : "/auth/login"}
+                state={!user ? { from: "/addTask" } : undefined}
+                className={`${
+                  location.pathname === "/addTask"
+                    ? "font-semibold text-indigo-300 dark:text-indigo-700 border-b-2"
+                    : "text-white dark:text-gray-200"
+                }`}
+              >
+                Add Task
+              </Link>
+            </li>
+
             {user && (
               <>
-                <li>
-                  <NavLink
-                    to="/addTask"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "font-semibold text-slate-700 dark:text-gray-50 border-b-2"
-                        : "text-slate-700 dark:text-gray-200"
-                    }
-                  >
-                    Add Task
-                  </NavLink>{" "}
-                </li>
-
                 <li>
                   <NavLink
                     to="/myTask"
                     className={({ isActive }) =>
                       isActive
-                        ? "font-semibold text-slate-700 dark:text-gray-50 border-b-2"
-                        : "text-slate-700 dark:text-gray-200"
+                        ? "font-semibold text-indigo-300 dark:text-indigo-700 border-b-2"
+                        : "text-white dark:text-gray-200"
                     }
                   >
                     My Posted Task
+                  </NavLink>{" "}
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    >
+                     Dashboard
                   </NavLink>{" "}
                 </li>
               </>
@@ -277,22 +254,31 @@ const NavBar = () => {
                   className="menu menu-sm dropdown-content absolute right-0 mt-3.5 w-40 bg-base-100 rounded-box p-2 shadow z-10"
                 >
                   <li>
-                    <Link className="dark:text-black" to="/">
+                    <Link className="text-black" to="/">
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link className="dark:text-black" to="/browseTask">
+                    <Link className="text-black" to="/browseTask">
                       Browser Task
                     </Link>
                   </li>
                   <li>
-                    <Link className="dark:text-black" to="/auth/login">
+                    <Link
+                      className="text-black"
+                      to={user ? "/addTask" : "/auth/login"}
+                      state={!user ? { from: "/addTask" } : undefined}
+                    >
+                      Add Task
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="text-black" to="/auth/login">
                       Login
                     </Link>
                   </li>
                   <li>
-                    <Link className="dark:text-black" to="/auth/register">
+                    <Link className="text-black" to="/auth/register">
                       Register
                     </Link>
                   </li>

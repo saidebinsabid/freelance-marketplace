@@ -28,7 +28,7 @@ const BrowseTask = () => {
   }
   return (
     <div>
-      <h1 className="text-3xl md:text-5xl font-bold pt-8 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
+      <h1 className="text-3xl md:text-5xl font-bold pt-32 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
         <Typewriter
           words={[
             "Find Tasks That Match Your Hustle..",
@@ -62,7 +62,7 @@ const BrowseTask = () => {
         )}
       </div>
 
-      <div className="flex justify-center pt-18 pb-24">
+      <div className="flex justify-center pt-18 pb-16">
         <button
           onClick={() => {
             setViewAll((prv) => !prv);

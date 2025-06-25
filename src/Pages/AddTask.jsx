@@ -32,7 +32,7 @@ const AddTask = () => {
       });
   };
   return (
-    <div className="w-11/12 mx-auto pb-24">
+    <div className="w-11/12 mx-auto pb-16 pt-32">
       <div className="text-center py-8">
         <h1 className="text-3xl md:text-5xl font-bold pb-2">Post Your Task</h1>
         <p className="md:w-3/5 mx-auto pt-6 text-gray-700 dark:text-gray-300">

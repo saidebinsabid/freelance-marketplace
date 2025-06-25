@@ -37,7 +37,8 @@ const freelancer = [
 
 const PopularFreelancer = () => {
   return (
-    <div className="bg-gradient-to-r from-slate-700 via-sky-700 to-slate-600">
+    <div className="py-12">
+      <div className="bg-gradient-to-r from-slate-700 via-sky-700 to-slate-600">
       <div className="text-center pt-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 ">
           Most Popular{" "}
@@ -51,11 +52,11 @@ const PopularFreelancer = () => {
         </p>
       </div>
 
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-12">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-12" >
         {freelancer.map((member, idx) => (
           <div
             key={idx}
-            className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden text-center"
+            className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden text-center" data-aos="flip-left"
           >
             <img
               src={member.image}
@@ -111,6 +112,7 @@ const PopularFreelancer = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

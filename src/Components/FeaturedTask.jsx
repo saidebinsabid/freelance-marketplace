@@ -4,6 +4,7 @@ import { FaAnglesRight } from "react-icons/fa6";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import LatestTaskCard from "./LatestTaskCard";
 import Loading from "../Pages/Loading";
+import 'aos/dist/aos.css';
 const FeaturedTask = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ const FeaturedTask = () => {
     fetch("https://freelance-marketplace-server-xi.vercel.app/latest-tasks")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched tasks:", data);
+        // console.log("Fetched tasks:", data);
         setTasks(data);
         setLoading(false);
       })
@@ -26,7 +27,7 @@ const FeaturedTask = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="w-11/12 mx-auto my-24">
+    <div className="w-11/12 mx-auto py-12">
       <div className="flex justify-between items-center">
         <div className="space-y-2 text-center lg:text-left">
           <h1 className="text-3xl lg:text-5xl font-bold">
