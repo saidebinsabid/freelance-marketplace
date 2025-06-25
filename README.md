@@ -3,6 +3,10 @@
 **Find Freelancers. Post Tasks. Get Things Done.**
 
 ---
+![Banner](https://github.com/saidebinsabid/freelance-marketplace/blob/main/kajkori-420.netlify.app_.png)
+---
+
+
 
 ## 🚀 Live Project Link
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-%20-%2300C853?style=for-the-badge&logo=appveyor)](https://kajkori-420.netlify.app/)
