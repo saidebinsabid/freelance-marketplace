@@ -16,8 +16,8 @@ const Footer = () => {
   const { user } = useContext(AuthContext);
   return (
     <div
-      className="bg-gradient-to-r from-[#2c3e50] via-[#3b4c5e] to-[#4e5d6c]
-"
+      className="bg-gradient-to-r from-[#1e1b4b] to-[#312e81]
+dark:from-slate-900 dark:to-slate-800"
     >
       <div className="w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-4 py-12 gap-6 text-white">
         <div>
@@ -75,7 +75,7 @@ const Footer = () => {
             </svg>
 
             {/* Brand Name */}
-            <Link to="/" className="text-2xl font-semibold text-gray-900">
+            <Link to="/" className="text-2xl font-semibold text-white">
               Kaj<span className="text-indigo-500">Kori</span>.com
             </Link>
           </div>
@@ -207,9 +207,9 @@ const Footer = () => {
         </div>
 
         <div>
-          <h1 className="font-bold mb-4 text-black">
+          <h1 className="font-bold mb-4 text-white">
             Kaj<span className="text-indigo-500">Kori</span>.com{" "}
-            <span className="text-white">Gallery</span>
+            <span className="text-white ml-2">Gallery</span>
           </h1>
           <div className="grid grid-cols-3 gap-1">
             <img
@@ -245,7 +245,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-[#4a5d72] via-[#5a6c7f] to-[#6b7b8c] w-full py-4">
+      <div className="bg-gradient-to-r from-[#1e1b4b63] to-[#363381] dark:from-slate-700 dark:to-slate-600 w-full py-4">
         <div className="max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-white">
           <h1 className="mb-2 md:mb-0">
             Copyright © 2025. All rights reserved

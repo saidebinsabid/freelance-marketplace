@@ -65,9 +65,9 @@ const LatestTaskCard = ({ task }) => {
           </span>
           <button
             onClick={handleSeeDetails}
-            className="relative inline-flex items-center justify-center p-4 px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group"
+            className="relative inline-flex items-center justify-center p-4 px-4 py-2 overflow-hidden font-medium text-indigo-500 transition duration-300 ease-out border-2 border-indigo-500 rounded-full shadow-md group"
           >
-            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-indigo-500 group-hover:translate-x-0 ease">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -83,7 +83,7 @@ const LatestTaskCard = ({ task }) => {
                 ></path>
               </svg>
             </span>
-            <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+            <span className="absolute flex items-center justify-center w-full h-full text-indigo-500 transition-all duration-300 transform group-hover:translate-x-full ease">
               See Details
             </span>
             <span className="relative invisible">See Details</span>

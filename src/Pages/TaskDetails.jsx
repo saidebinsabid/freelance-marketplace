@@ -86,7 +86,7 @@ const TaskDetails = () => {
 
   return (
     <div className="w-11/12 mx-auto py-24">
-      <div className="bg-gradient-to-r from-[#1e1b4b] to-[#312e81] text-white p-6 rounded-lg shadow-xl flex items-center gap-6 justify-between">
+      <div className="bg-gradient-to-r from-[#1e1b4b] to-[#312e81] text-white dark:from-slate-900 dark:to-slate-800 p-6 rounded-lg shadow-xl flex items-center gap-6 justify-between">
         <div className="flex items-center gap-4">
           <FaIdCardAlt size={40} className="text-white" />
           <div>

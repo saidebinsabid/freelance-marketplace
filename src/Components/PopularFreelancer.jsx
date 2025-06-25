@@ -37,7 +37,7 @@ const freelancer = [
 
 const PopularFreelancer = () => {
   return (
-    <div className="bg-gradient-to-r from-slate-700 via-sky-500 to-slate-600">
+    <div className="bg-gradient-to-r from-slate-700 via-sky-700 to-slate-600">
       <div className="text-center pt-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 ">
           Most Popular{" "}

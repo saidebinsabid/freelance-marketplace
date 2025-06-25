@@ -38,11 +38,11 @@ const FeaturedTask = () => {
           </p>
         </div>
 
-        <div className="hidden lg:flex items-center gap-2 text-lg font-semibold">
-          <span className="bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 bg-clip-text text-transparent">
+        <div className="hidden lg:flex items-center gap-2 text-lg font-semibold hover:text-indigo-500">
+          <span className="bg-gray-800 hover:bg-indigo-500  bg-clip-text text-transparent">
             <Link to="/browseTask">Browse All</Link>
           </span>
-          <FaAnglesRight className="text-indigo-500" />
+          <FaAnglesRight />
         </div>
       </div>
 

@@ -68,7 +68,7 @@ const BrowseTask = () => {
             setViewAll((prv) => !prv);
             if (viewAll) window.scrollTo(0, 800);
           }}
-          className="px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-500 
+          className="px-6 py-3 bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-500 
                hover:from-purple-500 hover:via-indigo-600 hover:to-blue-500
                text-white font-bold text-lg tracking-wide rounded-full 
                shadow-lg transition-all duration-300

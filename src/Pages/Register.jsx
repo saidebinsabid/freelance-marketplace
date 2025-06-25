@@ -5,10 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 
 const Register = () => {
-  const { createUser, setUser, updateUser, createUserGoogle } = use(AuthContext);
+  const { createUser, setUser, updateUser, createUserGoogle, loading, setLoading } = use(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -174,7 +173,7 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="btn w-full py-3 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg"
+            className="btn w-full py-3 bg-indigo-500 hover:bg-indigo-700 text-white font-semibold rounded-lg"
             disabled={loading}
           >
             {loading ? "Registering..." : "Register"}

@@ -140,7 +140,7 @@ const Login = () => {
           )}
           <button
             type="submit"
-            className="btn w-full py-3 bg-slate-200 border-1 border-slate-600 text-slate-700 font-semibold rounded-lg hover:bg-slate-600 hover:text-white transition"
+            className="btn w-full py-3 border-1 border-indigo-600 text-indigo-700 font-semibold rounded-lg hover:bg-indigo-600 hover:text-white transition"
           >
             Login
           </button>

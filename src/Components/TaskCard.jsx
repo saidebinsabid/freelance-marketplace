@@ -33,7 +33,7 @@ rounded-xl px-5 py-8 shadow-sm hover:shadow-md transition duration-200
 space-y-6 md:space-y-0 md:space-x-6"
     >
       <div className="hidden md:inline absolute md:-bottom-3 md:left-1/2 transform -translate-x-1/2">
-        <span className="bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md">
+        <span className="bg-indigo-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md">
           Open 🔓
         </span>
       </div>
@@ -72,9 +72,9 @@ space-y-6 md:space-y-0 md:space-x-6"
         <button
           onClick={handleSeeDetails}
           href="#_"
-          className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group"
+          className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-500 transition duration-300 ease-out border-2 border-indigo-500 rounded-full shadow-md group"
         >
-          <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+          <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-indigo-500 group-hover:translate-x-0 ease">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -90,7 +90,7 @@ space-y-6 md:space-y-0 md:space-x-6"
               ></path>
             </svg>
           </span>
-          <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+          <span className="absolute flex items-center justify-center w-full h-full text-indigo-500 transition-all duration-300 transform group-hover:translate-x-full ease">
             See Details
           </span>
           <span className="relative invisible">See Details</span>
