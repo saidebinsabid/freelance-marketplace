@@ -126,6 +126,57 @@ server/
 
 ---
 
+## 🚀 How to Run Locally
+
+**1. Clone the repo:**
+
+```bash
+git clone https://github.com/your-username/ecofridge.git
+cd freelance-marketplace
+```
+**2. Install frontend dependencies:**
+
+```bash
+npm install
+```
+**3. Clone the backend repo:**
+
+```bash
+git clone https://github.com/your-username/ecofridge.git
+cd freelance-marketplace-server
+```
+**4. Install backend dependencies:**
+
+```bash
+npm install
+```
+**4. Set up environment variables:** 
+- Create a `.env.local` file inside the `/client` directory and add your Firebase config:
+```bash
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+```
+- Create a `.env` file inside the `/server` directory and add the following:
+
+```bash
+MONGO_URI=your_mongo_db_connection_string
+```
+**5. Run the backend server:**
+```bash
+cd freelance-marketplace-server
+nodemon index.js
+```
+
+**6. Run the frontend client:**
+```bash
+cd freelance-marketplace
+npm run dev
+```
+---
 ## 📞 Contact
 
 For any questions or feedback, please contact:
