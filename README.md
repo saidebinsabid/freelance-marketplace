@@ -3,7 +3,7 @@
 **Find Freelancers. Post Tasks. Get Things Done.**
 
 ---
-![Banner](https://github.com/saidebinsabid/freelance-marketplace/blob/main/kajkori-420.netlify.app_.png)
+![Banner](https://github.com/saidebinsabid/freelance-marketplace/blob/main/Website.png)
 ---
 
 
