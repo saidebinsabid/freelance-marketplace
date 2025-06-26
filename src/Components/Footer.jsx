@@ -11,6 +11,7 @@ import { CiMail } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import Logo from "./Logo";
 
 const Footer = () => {
   const { user } = useContext(AuthContext);
@@ -22,62 +23,7 @@ dark:from-slate-900 dark:to-slate-800"
       <div className="w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-4 py-12 gap-6 text-white">
         <div>
           <div className="flex justify-start items-center gap-2 mb-4">
-            {/* Logo SVG */}
-            <svg
-              className="w-8 h-8"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              fill="none"
-            >
-              <defs>
-                <linearGradient
-                  id="aesthetic-gradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#6366F1" /> {/* Indigo */}
-                  <stop offset="100%" stopColor="#06B6D4" /> {/* Cyan */}
-                </linearGradient>
-              </defs>
-              <rect
-                x="3"
-                y="1"
-                width="7"
-                height="12"
-                stroke="url(#aesthetic-gradient)"
-              />
-              <rect
-                x="3"
-                y="17"
-                width="7"
-                height="6"
-                stroke="url(#aesthetic-gradient)"
-              />
-              <rect
-                x="14"
-                y="1"
-                width="7"
-                height="6"
-                stroke="url(#aesthetic-gradient)"
-              />
-              <rect
-                x="14"
-                y="11"
-                width="7"
-                height="12"
-                stroke="url(#aesthetic-gradient)"
-              />
-            </svg>
-
-            {/* Brand Name */}
-            <Link to="/" className="text-2xl font-semibold text-white">
-              Kaj<span className="text-indigo-500">Kori</span>.com
-            </Link>
+            <Logo></Logo>
           </div>
           <div className="join">
             <input
@@ -138,7 +84,7 @@ dark:from-slate-900 dark:to-slate-800"
           </div>
           <div className="flex items-center gap-2">
             <CiMail size={20} />
-            <p>M.Alyaqout@4house.Co</p>
+            <p>"m.alyaqout@4house.Com</p>
           </div>
           <div className="flex items-center gap-2">
             <IoTimeOutline size={20} />

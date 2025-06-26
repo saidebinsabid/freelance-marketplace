@@ -8,14 +8,13 @@ import { Faq } from '../Components/Faq';
 
 
 const Home = () => {
-
     return (
         <div className='bg-white dark:bg-gray-900 dark:text-white'>
             <Hero />
             <FeaturedTask />
             <PopularFreelancer />
             <DifferentDataCount />
-            <Faq></Faq>
+            <div id='about'><Faq></Faq></div>
         </div>
     );
 };

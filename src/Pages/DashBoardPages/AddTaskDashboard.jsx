@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 
-const AddTask = () => {
+const AddTaskDashboard = () => {
   const { user } = useContext(AuthContext);
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const AddTask = () => {
       });
   };
   return (
-    <div className="w-11/12 mx-auto pb-16 pt-32">
+    <div className="w-11/12 mx-auto">
       <div className="text-center py-8">
         <h1 className="text-3xl md:text-5xl font-bold pb-2 dark:text-gray-200">Post Your Task</h1>
         <p className="md:w-3/5 mx-auto pt-6 text-gray-700 dark:text-gray-300">
@@ -156,4 +156,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default AddTaskDashboard;

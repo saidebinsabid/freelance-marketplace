@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import TaskCard from "../Components/TaskCard";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
-import Loading from "./Loading";
+import TaskCard from "../../Components/TaskCard";
+import Loading from "../Loading";
 
-const BrowseTask = () => {
+const BrowseTaskDashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -48,7 +48,7 @@ useEffect(() => {
 
   return (
     <div>
-      <h1 className="text-3xl md:text-5xl font-bold pt-32 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
+      <h1 className="text-3xl md:text-5xl font-bold pt-8 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
         <Typewriter
           words={[
             "Find New Posted Tasks That Match Your Hustle..",
@@ -64,7 +64,7 @@ useEffect(() => {
         />
       </h1>
 
-      <div className="w-11/12 mx-auto space-y-8 pt-18">
+      <div className="w-11/12 mx-auto space-y-8">
         <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-white dark:bg-gray-800 rounded shadow-sm mt-10 w-11/12 mx-auto">
           <div className="text-gray-700 dark:text-gray-300 font-medium text-base">
             Showing {tasks.length} result{tasks.length !== 1 && "s"}
@@ -93,7 +93,7 @@ useEffect(() => {
         </div>
 
         {displayedTasks.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {displayedTasks.map((task) => (
               <TaskCard key={task._id} task={task} />
             ))}
@@ -140,4 +140,4 @@ useEffect(() => {
   );
 };
 
-export default BrowseTask;
+export default BrowseTaskDashboard;

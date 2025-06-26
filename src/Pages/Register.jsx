@@ -134,7 +134,7 @@ const Register = () => {
             <input
               name="name"
               type="text"
-              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400"
+              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
               placeholder="Your Name"
               required
             />
@@ -145,7 +145,7 @@ const Register = () => {
             <input
               name="email"
               type="email"
-              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400"
+              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
               placeholder="Email Address"
               required
             />
@@ -155,7 +155,7 @@ const Register = () => {
             <input
               name="photo"
               type="text"
-              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400"
+              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
               placeholder="https://example.com/photo.jpg"
               required
             />
@@ -165,7 +165,7 @@ const Register = () => {
             <input
               name="password"
               type="password"
-              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400"
+              className="input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:placeholder-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
               placeholder="Password"
               required
             />

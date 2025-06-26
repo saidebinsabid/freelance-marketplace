@@ -15,9 +15,8 @@ const DifferentDataCountCard = () => {
     <>
       {/* Card 1 */}
       <div ref={ref1} 
-      className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] 
-      dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200
-      hover:shadow-xl rounded-2xl space-y-6 text-center">
+      className="p-8
+      space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalJobs} alt="total-doctor-icon" />
         {inView1 && (
           <span className="text-5xl font-bold">
@@ -28,7 +27,7 @@ const DifferentDataCountCard = () => {
       </div>
 
       {/* Card 2 */}
-      <div ref={ref2} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200 hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref2} className="p-8 space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalReview} alt="total-review-icon" />
         {inView2 && (
           <span className="text-5xl font-bold">
@@ -39,7 +38,7 @@ const DifferentDataCountCard = () => {
       </div>
 
       {/* Card 3 */}
-      <div ref={ref3} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200 hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref3} className="p-8 space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalCompletedTask} alt="patients-icon" />
         {inView3 && (
           <span className="text-5xl font-bold">
@@ -50,7 +49,7 @@ const DifferentDataCountCard = () => {
       </div>
 
       {/* Card 4 */}
-      <div ref={ref4} className="p-8 bg-gradient-to-tr from-[#a8b2c1] via-[#dce3ea] to-[#bfc9d6] dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 dark:text-gray-200 hover:shadow-xl rounded-2xl space-y-6 text-center">
+      <div ref={ref4} className="p-8 space-y-6 text-center">
         <img className="mx-auto w-26 h-26 rounded-full object-contain" src={totalFreelancer} alt="stuffs-icon" />
         {inView4 && (
           <span className="text-5xl font-bold">

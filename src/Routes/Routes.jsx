@@ -12,6 +12,12 @@ import ErrorPage from "../Pages/ErrorPage";
 import Loading from "../Pages/Loading";
 import TaskDetails from "../Pages/TaskDetails";
 import DashboardLayout from "../Layouts/DashBoardLayout";
+import BrowseTaskDashboard from "../Pages/DashBoardPages/BrowseTaskDashboard";
+import DashboardHomeWrapper from "../Pages/DashBoardPages/DashboardHomeWrapper";
+import MyTaskDashboard from "../Pages/DashBoardPages/MyTaskDashboard";
+import AddTaskDashboard from "../Pages/DashBoardPages/AddTaskDashboard";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,12 +27,17 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+       {
+        path: "/about",
+        element: <About></About>,
+      },
+       {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
       {
         path: "/browseTask",
-        hydrateFallbackElement: <Loading></Loading>,
-        loader: () =>
-          fetch("https://freelance-marketplace-server-xi.vercel.app/tasks"),
-        element: <BrowseTask></BrowseTask>,
+element: <BrowseTask></BrowseTask>,
       },
       {
         path: "/taskDetail/:id",
@@ -74,27 +85,27 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardLayout></DashboardLayout>
-      </PrivateRoute>
-    ),
-    children: [
-      {
-        path: "browseTask",
-        hydrateFallbackElement: <Loading></Loading>,
-        element: <BrowseTask />,
-        loader: () =>
-          fetch("https://freelance-marketplace-server-xi.vercel.app/tasks"),
-      },
-      {
-        path: "addTask",
-        element: <AddTask />,
-      },
-      { path: "myTask", element: <MyTask /> },
-    ],
-  },
+  path: "/dashboard",
+  element: <DashboardLayout />,
+  children: [
+    {
+      index: true,
+      element: <DashboardHomeWrapper></DashboardHomeWrapper>,
+    },
+    {
+      path: "/dashboard/browseTask",
+      element: <BrowseTaskDashboard />,
+    },
+    {
+      path: "addTask",
+      element: <AddTaskDashboard></AddTaskDashboard>,
+    },
+    {
+      path: "myTask",
+      element: <MyTaskDashboard></MyTaskDashboard>,
+    },
+  ],
+},
   {
     path: "/*",
     element: <ErrorPage></ErrorPage>,

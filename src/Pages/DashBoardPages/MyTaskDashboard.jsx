@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+
 import { TiStopwatch } from "react-icons/ti";
 import { GrUpdate } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
 import { GiHeartWings } from "react-icons/gi";
 import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 import Swal from "sweetalert2";
-import UpdateTaskModal from "../Components/UpdateTaskModal";
-import Loading from "./Loading";
 
-const MyTask = () => {
+import { AuthContext } from "../../Provider/AuthProvider";
+import UpdateTaskModal from "../../Components/UpdateTaskModal";
+import Loading from "../Loading";
+
+const MyTaskDashboard = () => {
   const { user } = useContext(AuthContext);
   const [myTasks, setMyTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -157,7 +159,7 @@ const MyTask = () => {
 
   if (loading) return <Loading></Loading>;
   return (
-    <div className="w-11/12 mx-auto pb-16 pt-32">
+    <div className="pt-8 w-11/12 mx-auto">
       <div className="text-center">
         <h1 className="text-3xl md:text-5xl font-bold pb-2 dark:text-gray-200">
           My Created Tasks
@@ -276,4 +278,4 @@ const MyTask = () => {
   );
 };
 
-export default MyTask;
+export default MyTaskDashboard;

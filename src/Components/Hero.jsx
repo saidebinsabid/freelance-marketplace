@@ -61,13 +61,13 @@ const Hero = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full min-h-screen object-cover"
+                className="w-full h-[70vh] object-cover object-top"
               />
               <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-4 space-y-8 z-10">
                 <h2 className="text-xl md:text-2xl lg:text-5xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent drop-shadow-md">
                   {item.title}
                 </h2>
-                <p className="hidden md:inline md:w-3/5 md:text-xl mt-4 bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent drop-shadow-sm">
+                <p className="md:w-3/5 md:text-xl mt-4 bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent drop-shadow-sm">
                   {item.desc}
                 </p>
 

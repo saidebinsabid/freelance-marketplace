@@ -14,9 +14,10 @@ const NavBar = () => {
   const isHomePage = location.pathname === "/";
   const defaultAvatar =
     "https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg";
+
+  
   useEffect(() => {
     const handleScroll = () => {
-      // If page scrolled more than 50px vertically, set scrolled to true
       if (window.scrollY > 50) {
         setScrolled(true);
       } else {
@@ -25,12 +26,12 @@ const NavBar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+
 
   if (loading) {
     return <Loading></Loading>;
@@ -89,6 +90,30 @@ const NavBar = () => {
                 Add Task
               </Link>
             </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-semibold text-indigo-300 dark:text-indigo-700 border-b-2"
+                    : "text-white dark:text-gray-200"
+                }
+              >
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-semibold text-indigo-300 dark:text-indigo-700 border-b-2"
+                    : "text-white dark:text-gray-200"
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
 
             {user && (
               <>
@@ -105,11 +130,7 @@ const NavBar = () => {
                   </NavLink>{" "}
                 </li>
                 <li>
-                  <NavLink
-                    to="/dashboard"
-                    >
-                     Dashboard
-                  </NavLink>{" "}
+                  <NavLink to="/dashboard">Dashboard</NavLink>{" "}
                 </li>
               </>
             )}
@@ -123,7 +144,7 @@ const NavBar = () => {
                 <ThemeToggle />
                 <div className="relative group">
                   <div className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 h-10 rounded-full bg-slate-400 overflow-hidden">
+                    <div className="w-10 rounded-full ring ring-indigo-500 dark:ring-indigo-400 ring-offset-gray-100 dark:ring-offset-gray-900 ring-offset-2 transition-colors duration-300">
                       <img
                         className="p-1 rounded-full object-contain"
                         src={user?.photoURL ? user.photoURL : defaultAvatar}
@@ -270,6 +291,22 @@ const NavBar = () => {
                       state={!user ? { from: "/addTask" } : undefined}
                     >
                       Add Task
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="text-black"
+                      to="/about"
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="text-black"
+                      to="/contact"
+                    >
+                      Contact
                     </Link>
                   </li>
                   <li>

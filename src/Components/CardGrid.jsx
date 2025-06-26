@@ -44,7 +44,7 @@ const CardGrid = ({ tasksCount, myTasksCount, totalBudget, nextDeadline }) => {
         >
           <div className="text-5xl mb-4">{icon}</div>
           <h3 className="text-lg font-semibold mb-1">{title}</h3>
-          <p className="text-5xl font-extrabold tracking-tight">{value}</p>
+          <p className="text-4xl font-extrabold tracking-wider">{value}</p>
         </div>
       ))}
     </div>
